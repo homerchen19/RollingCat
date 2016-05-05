@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Phaser - Making your first game, part 1</title>
+	<title>Rolling Cat</title>
 	<script type="text/javascript" src="js/phaser.min.js"></script>
     <style type="text/css">
         body {
@@ -13,80 +13,114 @@
 <body>
 
 <script type="text/javascript">
+	const innerWidth = window.innerWidth;
+	const innerHeight = window.innerHeight;
+	const gameRatio = innerWidth / innerHeight;
+	const scaleWidth = innerWidth / 1920;
+	const scaleHeight = innerHeight / 1080;
+	var game = new Phaser.Game(innerWidth, innerHeight, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+	var score = 0;
+	var stones, stone;
+	var randomXPosition = game.rnd.integerInRange(100, innerWidth);
 
-var game = new Phaser.Game(1920,860 , Phaser.AUTO, '', { preload: preload, create: create, update: update });
-var score = 0;
-function collectBeans(cat,redbean){
-	redbean.kill();
-	score = score +10;
-	scoreText.text = 'Score'+score;
-}
-function preload() {
-	game.load.image('background','assets/2.jpg');
-	game.load.image('stone_2','assets/4.png');
-	game.load.image('stone_1','assets/5.png');
-	game.load.image('cat','assets/1.gif');
-	game.load.image('redbean','assets/3.png');
-}
-
-function create() {
-	//game.add.sprite(0,0,'sky');
-	//game.add.sprite(0,0,'star');
-	game.physics.startSystem(Phaser.Physics.ARCADE);
-	background = game.add.sprite(0,0,'background');
-    //game.physics.arcade.enable(backgrounds);
-	//for(var i = 0;i<10;i++){
-		//var background = backgrounds.create(0,i*1920,'background');
-    //}
-	//backgrounds.body.velocity.x=150;
-	stones = game.add.group();
-	stones.enableBody = true;
-	var stone = stones.create(1500 , game.world.height-523 , 'stone_1');
-	stone.body.immovable = true;
-	stone = stones.create(750 , game.world.height-208 , 'stone_2');
-	stone.body.immovable = true;
-
-	cat = game.add.sprite(0,game.world.height-500,'cat');
-	game.physics.arcade.enable(cat);
-	cat.body.bounce.y = 0.2;
-	cat.body.gravity.y = 300;
-
-	cat.body.collideWorldBounds = true;
-	/*cat.animations.add('left',[0,1,2,3],10,true);
-	cat.animations.add('right',[5,6,7,8],10,true);
-    */
-	scoreText = game.add.text(16,16,'score:0',{fontSize:'32px',fill:'#000'});
-	redbeans = game.add.group();
-	redbeans.enableBody = true;
-	for (var i = 0 ; i < 2 ;i++){
-	   var redbean = redbeans.create((i+1)*600,0,'redbean');
-	   //redbean.body.gravity.y = 0;
-	   //redbean.body.bounce.y = (0.7)+Math.random()*0.2;
+	function collectBeans(cat, redbean){
+		redbean.kill();
+		score = score + 10;
+		scoreText.text = 'Score'+score;
 	}
-}
+	function preload() {
+		game.load.image('background', 'assets/2.jpg');
+		game.load.image('stone_2', 'assets/4.png');
+		game.load.image('stone_1', 'assets/5.png');
+		game.load.image('cat', 'assets/1.gif');
+		game.load.image('redbean', 'assets/3.png');
+	}
 
-function update() {
-	game.physics.arcade.collide(cat,stones);
-	game.physics.arcade.collide(cat,redbeans);
-    game.physics.arcade.overlap(cat,redbeans,collectBeans,null,this);
-    cat.body.velocity.x = 0;
-    cursors = game.input.keyboard.createCursorKeys();
-	if(cursors.left.isDown){
-	  cat.body.velocity.x = -150;
-	  //player.animations.play('left');
-    }
-	else if(cursors.right.isDown){
-	  cat.body.velocity.x = 150;
-	  //player.animations.play('right');
+	function create() {
+		//game.add.sprite(0,0,'sky');
+		//game.add.sprite(0,0,'star');
+		// background
+		game.physics.startSystem(Phaser.Physics.ARCADE);
+		background = game.add.sprite(0, 0, 'background');
+
+	    //game.physics.arcade.enable(backgrounds);
+		//for(var i = 0;i<10;i++){
+			//var background = backgrounds.create(0,i*1920,'background');
+	    //}
+		//backgrounds.body.velocity.x=150;
+
+		// stones
+		stones = game.add.group();
+		stones.enableBody = true;
+
+		var stone1Height = game.cache.getImage("stone_1").height;
+		var stone1Width = game.cache.getImage("stone_1").width;
+		var stone2Height = game.cache.getImage("stone_2").height;
+		var stone2Width = game.cache.getImage("stone_2").width;
+
+		//stone_1
+		stone = stones.create(randomXPosition , game.world.height - stone1Height * scaleHeight, 'stone_1');
+		stone.scale.setTo(scaleWidth, scaleHeight); //重設大小
+		stone.body.velocity.x = -100;
+		stone.body.immovable = true;
+
+		//stone_2
+		stone = stones.create(randomXPosition +  stone2Width, game.world.height - stone2Height * scaleHeight , 'stone_2');
+		stone.scale.setTo(scaleWidth, scaleHeight);
+		stone.body.velocity.x = -100;
+		stone.body.immovable = true;
+
+		// cat
+		cat = game.add.sprite(0, game.world.height - 500, 'cat');
+		cat.scale.setTo(scaleWidth, scaleHeight);
+		cat.anchor.setTo(0.5, 0.5);
+		game.physics.arcade.enable(cat);
+		cat.body.bounce.y = 0.2;
+		cat.body.gravity.y = 800;
+		cat.body.collideWorldBounds = true;
+
+		/*cat.animations.add('left',[0,1,2,3],10,true);
+		cat.animations.add('right',[5,6,7,8],10,true);
+	    */
+
+		// scoreText
+		scoreText = game.add.text(16, 16, 'score:0', { fontSize :'32px', fill :'#000' } );
+
+		redbeans = game.add.group();
+		redbeans.enableBody = true;
+		var redbean;
+		for (var i = 0 ; i < 2 ; i++){
+		   redbean = redbeans.create((i + 1) * 600, 0, 'redbean');
+		   redbean.scale.setTo(scaleWidth, scaleHeight);
+		   //redbean.body.gravity.y = 0;
+		   //redbean.body.bounce.y = (0.7)+Math.random()*0.2;
+		}
 	}
-    else {
-	  cat.animations.stop();
-      //player.frame = 4;
-    }
-	if(cursors.up.isDown ){
-	  cat.body.velocity.y = -350;
+
+	function update() {
+		game.physics.arcade.collide(cat, stones);
+		game.physics.arcade.collide(cat, redbeans);
+	    game.physics.arcade.overlap(cat, redbeans, collectBeans, null, this);
+	    cat.body.velocity.x = 0;
+		cat.angle += 10; //旋轉
+
+	    cursors = game.input.keyboard.createCursorKeys();
+		if(cursors.left.isDown){
+		  cat.body.velocity.x = -150;
+		  //player.animations.play('left');
+	    }
+		else if(cursors.right.isDown){
+		  cat.body.velocity.x = 150;
+		  //player.animations.play('right');
+		}
+	    else {
+		  cat.animations.stop();
+	      //player.frame = 4;
+	    }
+		if(cursors.up.isDown ){
+		  cat.body.velocity.y = -350;
+		}
 	}
-}
 
 </script>
 
