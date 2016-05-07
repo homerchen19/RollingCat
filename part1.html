@@ -22,14 +22,31 @@
 	var game = new Phaser.Game(innerWidth, innerHeight, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 	var score = 0;
 	var stones, stone;
+  var stone_v = -200;
+  var redbeans,redbean;
+  var redbean_v = -200;
 	var randomXPosition = game.rnd.integerInRange(100, innerWidth);
-  console.log(innerWidth);
-  console.log(innerHeight);
+  //console.log(innerWidth);
+  //console.log(innerHeight);
 	function collectBeans(cat, redbean){
 		redbean.kill();
 		score = score + 10;
 		scoreText.text = 'Score:'+score;
 	}
+  function createElement(num) {
+    for(var i = 0 ; i < num ; i++){
+      var x = game.rnd.integerInRange(1,2);
+      if( x ==1){
+        console.log(redbean.height);
+        redbean = redbeans.create(innerWidth+i*game.rnd.integerInRange(100,200),game.rnd.integerInRange(0,innerHeight-(redbean.height/scaleHeight)),'redbean');
+		    redbean.scale.setTo(scaleWidth, scaleHeight);
+        redbean.body.velocity.x = redbean_v;
+      }
+      else{
+        console.log('haha');
+      }
+    }
+}
 	function preload() {
 		game.load.image('background', 'assets/2.jpg');
 		game.load.image('stone_2', 'assets/4.png');
@@ -43,9 +60,10 @@
 		//game.add.sprite(0,0,'star');
 		// background
 		game.physics.startSystem(Phaser.Physics.ARCADE);
-    game.world.setBounds(0,0,innerWidth*6,innerHeight);
+    //game.world.setBounds(0,0,innerWidth*6,innerHeight);
 		background = game.add.tileSprite(0, 0,1920,1080, 'background');
     background.scale.setTo(scaleWidth,scaleHeight);
+
 	    //game.physics.arcade.enable(backgrounds);
 		//for(var i = 0;i<10;i++){
 			//var background = backgrounds.create(0,i*1920,'background');
@@ -55,7 +73,7 @@
 		// stones
 		stones = game.add.group();
 		stones.enableBody = true;
-
+    
 		var stone1Height = game.cache.getImage("stone_1").height;
 		var stone1Width = game.cache.getImage("stone_1").width;
 		var stone2Height = game.cache.getImage("stone_2").height;
@@ -72,7 +90,6 @@
 		stone.scale.setTo(scaleWidth, scaleHeight);
 	  //stone.body.velocity.x = -100;
 		stone.body.immovable = true;
-
 		// cat
 		cat = game.add.sprite(0, game.world.height - 500, 'cat');
 		cat.scale.setTo(scaleWidth, scaleHeight);
@@ -91,24 +108,25 @@
 
 		redbeans = game.add.group();
 		redbeans.enableBody = true;
-		var redbean;
+    game.physics.arcade.enable(redbeans);
 		for (var i = 0 ; i < 2 ; i++){
-		   redbean = redbeans.create((i + 1) * 600, 0, 'redbean');
+		   redbean = redbeans.create((i + 1) *2800, 0, 'redbean');
 		   redbean.scale.setTo(scaleWidth, scaleHeight);
-		   //redbean.body.gravity.y = 0;
-		   //redbean.body.bounce.y = (0.7)+Math.random()*0.2;
+       redbean.body.velocity.x = -1000;
 		}
+    console.log(redbeans.children);
 	}
 
 	function update() {
-		game.physics.arcade.collide(cat, stones);
-		game.physics.arcade.collide(cat, redbeans);
+		//game.physics.arcade.collide(cat, stones);
 	  game.physics.arcade.overlap(cat, redbeans, collectBeans, null, this);
-	  background.tilePosition.x += -200;
+	  background.tilePosition.x += -50;
     cat.body.velocity.x = 0;
 		cat.angle += 10; //旋轉
-
-	    cursors = game.input.keyboard.createCursorKeys();
+    if(redbeans.total==0||stones.total==0){
+       createElement(5);
+    }
+	  cursors = game.input.keyboard.createCursorKeys();
 		if(cursors.left.isDown){
 		  cat.body.velocity.x = -150;
 		  //player.animations.play('left');
