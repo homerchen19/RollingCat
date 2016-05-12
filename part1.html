@@ -22,11 +22,12 @@
 	var game = new Phaser.Game(innerWidth, innerHeight, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 	var score = 0;
 	var stones, stone_1 , stone_2;
-	var stone_v = -200;
+	var stone_v = -500;
 	var redbeans, redbean;
-	var redbean_v = -200;
+	var redbean_v = -1000;
 	var randomXPosition = game.rnd.integerInRange(innerWidth, innerWidth * 1.5);
 	var mylatesttap; 
+	var jumps = 2;
   	//console.log(innerWidth);
   	//console.log(innerHeight);
   	function hitstone(cat,stone){
@@ -34,7 +35,7 @@
     	game.paused = true;
   	}
 
-  	function hitbound(bound,obj){
+  	function hitbound(bound, obj){
      	obj.kill();
   	}
 
@@ -55,35 +56,25 @@
 		        redbean = redbeans.create(max_x, game.rnd.integerInRange(0, innerHeight - redbean.height), 'redbean');
 				redbean.scale.setTo(scaleWidth, scaleHeight);
 		        redbean.body.velocity.x = redbean_v;
+		        redbean.body.allowGravity = false;
 		    }
 		    else if(x == 2){
 		      	max_x += half_innerWidth + game.rnd.integerInRange(stone_1.width, half_innerWidth)
 		        stone_1 = stones.create(max_x, innerHeight - stone_1.height, 'stone_1'); 
 		        stone_1.scale.setTo(scaleWidth,scaleHeight);
-		        stone_1.body.velocity.x = stone_v;         
+		        stone_1.body.velocity.x = stone_v;  
+		        stone_1.body.allowGravity = false;       
 		    }
 		    else{
 		      	max_x += half_innerWidth + game.rnd.integerInRange(stone_2.width, half_innerWidth)
 		        stone_2 = stones.create(max_x, innerHeight - stone_2.height, 'stone_2'); 
 		        stone_2.scale.setTo(scaleWidth,scaleHeight);
-		        stone_2.body.velocity.x = stone_v;         
+		        stone_2.body.velocity.x = stone_v;    
+		        stone_2.body.allowGravity = false;    
 		    }
 		    //console.log(max_x);
 	    }
 	}
-
-	function doubleclick(item,pointer){    
-		var now = new Date().getTime();   
-		var timesince = now - mylatesttap;    
-		if((timesince < 600) && (timesince > 0)){     
-			console.log("double tap");   
-		}
-		else {    
-			console.log("don't");   
-		}    
-		mylatesttap = new Date().getTime();
-	}
-
 
 	function preload() {
 		game.load.image('background', 'assets/2.jpg');
@@ -95,13 +86,16 @@
 
 	function create() {
 		// background
-		game.physics.startSystem(Phaser.Physics.NINJA);
+		game.physics.startSystem(Phaser.Physics.ARCADE);
+		game.physics.arcade.gravity.y = 1500; //地圖重力
+
 		background = game.add.tileSprite(0, 0, 1920, 1080, 'background');
 	    background.scale.setTo(scaleWidth, scaleHeight);
-	    bound = game.add.sprite(-innerWidth - 300, 0, 'background');
+
+	    bound = game.add.sprite(-innerWidth-300, 0, 'background');
 	    bound.scale.setTo(scaleWidth, scaleHeight);
 	    game.physics.arcade.enable(bound);
-	    game.physics.arcade.gravity.y = 1500;
+	    bound.body.allowGravity = false;
 		// stones
 		stones = game.add.group();
 		stones.enableBody = true;
@@ -112,14 +106,14 @@
 		var stone2Width = game.cache.getImage("stone_2").width;
 
 		//stone_1
-		stone_1 = stones.create(randomXPosition , game.world.height - stone1Height * scaleHeight, 'stone_1');
+		stone_1 = stones.create(randomXPosition + 1000 , game.world.height - stone1Height * scaleHeight, 'stone_1');
 		stone_1.scale.setTo(scaleWidth, scaleHeight); //重設大小
     	stone_1.body.velocity.x = stone_v;
     	stone_1.body.allowGravity = false;
 		//stone_1.body.immovable = true;
 
 		//stone_2
-		stone_2 = stones.create(randomXPosition +  stone2Width, game.world.height - stone2Height * scaleHeight , 'stone_2');
+		stone_2 = stones.create(randomXPosition +  stone2Width + 1000, game.world.height - stone2Height * scaleHeight , 'stone_2');
 		stone_2.scale.setTo(scaleWidth, scaleHeight);
 	  	stone_2.body.velocity.x = stone_v;
 	  	stone_2.body.allowGravity = false;
@@ -142,20 +136,28 @@
 		redbeans = game.add.group();
 		redbeans.enableBody = true;
     	game.physics.arcade.enable(redbeans);
+		
 		for (var i = 0 ; i < 2 ; i++){
-		   redbean = redbeans.create((i + 1) *2800, 0, 'redbean');
-		   redbean.scale.setTo(scaleWidth, scaleHeight);
-       		redbean.body.velocity.x = -1000;
+		  	redbean = redbeans.create((i + 1) *2800, 0, 'redbean');
+		   	redbean.scale.setTo(scaleWidth, scaleHeight);
+       		redbean.body.velocity.x = redbean_v;
+       		redbean.body.allowGravity = false;
 		}
-    	console.log(redbeans.children);
+
+		game.input.keyboard.addKeyCapture([
+	        Phaser.Keyboard.UP
+	    ]);
+
+
 	}
 
 	function update() {
 		//game.physics.arcade.collide(cat, stones);
 	  	game.physics.arcade.overlap(cat, redbeans, collectBeans, null, this);
 	  	game.physics.arcade.overlap(cat, stones, hitstone, null, this);
-	    game.physics.arcade.overlap(bound,redbeans,hitbound, null, this);
-	    game.physics.arcade.overlap(bound,stones,hitbound, null, this);
+	    game.physics.arcade.overlap(bound, redbeans, hitbound, null, this);
+	    game.physics.arcade.overlap(bound, stones, hitbound, null, this);
+
 	  	background.tilePosition.x += -50;
     	cat.body.velocity.x = 0;
 		cat.angle += 10; //旋轉
@@ -164,25 +166,26 @@
 	       createElement(5);
 	    }
 
-	  	cursors = game.input.keyboard.createCursorKeys();
-		/*if(cursors.left.isDown){
-		  cat.body.velocity.x = -150;
-		  //player.animations.play('left');
+	    //偵測有沒有碰到地板
+		var onTheGround = cat.body.blocked.down;
+
+	    if (onTheGround) {
+	    	//限定只能跳兩次
+	        jumps = 2;
 	    }
-		else if(cursors.right.isDown){
-		  cat.body.velocity.x = 150;
-		  //player.animations.play('right');
-		}
-	    else {
-		  cat.animations.stop();
-	      //player.frame = 4;
-	    }*/
-		if(cursors.up.isDown ){
-		  cat.body.velocity.y = -innerHeight*1.5;
-		}
+
+	    // Jump!
+	    if (jumps > 0 && upInputIsActive(5)) {
+	        cat.body.velocity.y = -innerHeight * 2;
+	        jumps--;
+	    }
 	}
 
-
+	upInputIsActive = function(duration) {
+	    var isActive = false;
+	    isActive = game.input.keyboard.downDuration(Phaser.Keyboard.UP, duration);
+	    return isActive;
+	};
 
 </script>
 
