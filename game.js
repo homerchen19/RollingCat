@@ -1,4 +1,3 @@
-
 	const innerWidth = window.innerWidth;
 	const innerHeight = window.innerHeight;
 	const gameRatio = innerWidth / innerHeight;

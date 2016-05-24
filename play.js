@@ -8,7 +8,7 @@ var playState = {
       //game.state.start('over');
       con = game.add.sprite(innerWidth*2.75/10,innerHeight/16,'continue');
 		  con.scale.setTo(scaleWidth, scaleHeight);
-//      con.inputEnabled = true;
+//    con.inputEnabled = true;
       restart = game.add.sprite(innerWidth/10,innerHeight/16,'restart');
 		  restart.scale.setTo(scaleWidth, scaleHeight);
   //    restart.inputEnable = true;
