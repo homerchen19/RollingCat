@@ -5,10 +5,17 @@ var playState = {
       //game.physics.arcade.isPaused = (game.physics.arcade.isPaused)? false :true;
       obj.kill();
       game.paused = true;
+      
       //game.state.start('over');
+      background.alpha=0.25;
+      chairs.alpha=0.25;
+      desks.alpha=0.25;
+      redbeans.alpha=0.25;
+      greenbeans.alpha=0.25;
+      taro.alpha=0.25;
       con = game.add.sprite(innerWidth*2.75/10,innerHeight/16,'continue');
 		  con.scale.setTo(scaleWidth, scaleHeight);
-//    con.inputEnabled = true;
+//      con.inputEnabled = true;
       restart = game.add.sprite(innerWidth/10,innerHeight/16,'restart');
 		  restart.scale.setTo(scaleWidth, scaleHeight);
   //    restart.inputEnable = true;
@@ -45,11 +52,18 @@ var playState = {
       c_redbean.destroy();
       n_greenbean.destroy();
       c_greenbean.destroy();
+      background.alpha=1;
+      chairs.alpha=1;
+      desks.alpha=1;
+      redbeans.alpha=1;
+      greenbeans.alpha=1;
+      taro.alpha=1;
       game.paused = false;
       //game.state.start('play');
     }
     ,
     backtomenu:function(){
+      game.paused = false;
       game.state.start('menu');
     }
     ,
