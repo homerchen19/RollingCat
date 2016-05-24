@@ -1,10 +1,57 @@
 var playState = {
-  	 die:function(cat,stone){
+  	 die:function(cat,obj){
     	//cat.kill();
     	//game.paused = true;
-      game.physics.arcade.isPaused = (game.physics.arcade.isPaused)? false :true;
+      //game.physics.arcade.isPaused = (game.physics.arcade.isPaused)? false :true;
+      obj.kill();
+      game.paused = true;
       //game.state.start('over');
-  	}
+      con = game.add.sprite(innerWidth*2.75/10,innerHeight/16,'continue');
+		  con.scale.setTo(scaleWidth, scaleHeight);
+//      con.inputEnabled = true;
+      restart = game.add.sprite(innerWidth/10,innerHeight/16,'restart');
+		  restart.scale.setTo(scaleWidth, scaleHeight);
+  //    restart.inputEnable = true;
+
+
+      num_1 = game.add.sprite(innerWidth*11/20,innerHeight/16,'result_taro');
+		  num_1.scale.setTo(scaleWidth, scaleHeight);
+		  n_taro = game.add.text(innerWidth*15/20, innerHeight*5/32, ' /50', { fontSize :0.0694*innerWidth+'px', fill :'#ffffff' } );
+		  c_taro = game.add.text(innerWidth*14/20, innerHeight/16, taro_num, { fontSize :0.125*innerWidth+'px', fill :'#ffffff' } );
+    
+      num_2 = game.add.sprite(innerWidth*11/20,innerHeight*6/16,'result_redbean');
+		  num_2.scale.setTo(scaleWidth, scaleHeight);
+		  n_redbean = game.add.text(innerWidth*15/20, innerHeight*15/32, ' /50', { fontSize:0.0694*innerWidth+'px', fill :'#ffffff' } );
+		  c_redbean = game.add.text(innerWidth*14/20, innerHeight*6/16, redbean_num , { fontSize :0.125*innerWidth+'px', fill :'#ffffff' } );
+    
+      num_3 = game.add.sprite(innerWidth*11/20,innerHeight*11/16,'result_greenbean');
+		  num_3.scale.setTo(scaleWidth, scaleHeight);
+		  n_greenbean = game.add.text(innerWidth*15/20, innerHeight*25/32, ' /50', { fontSize :0.0694*innerWidth+'px', fill :'#ffffff' } );
+		  c_greenbean = game.add.text(innerWidth*14/20, innerHeight*11/16, greenbean_num, { fontSize :0.125*innerWidth+'px', fill :'#ffffff' } );
+      var Spacekey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+      Spacekey.onDown.add(playState.backtomenu,this);
+      var Rkey = game.input.keyboard.addKey(Phaser.Keyboard.R);
+      Rkey.onDown.add(playState.backtogame,this);
+    },
+    backtogame:function(){
+      con.destroy();
+      restart.destroy();
+      num_1.destroy();
+      num_2.destroy();
+      num_3.destroy();
+      n_taro.destroy();
+      c_taro.destroy();
+      n_redbean.destroy();
+      c_redbean.destroy();
+      n_greenbean.destroy();
+      c_greenbean.destroy();
+      game.paused = false;
+      //game.state.start('play');
+    }
+    ,
+    backtomenu:function(){
+      game.state.start('menu');
+    }
     ,
   	hitbound:function(bound, obj){
      	obj.kill();
@@ -121,9 +168,9 @@ var playState = {
 	    */
 
 		// scoreText
-		scoreText_redbean = game.add.text(16, 16, 'Red Bean: 0', { fontSize :'32px', fill :'#000' } );
-		scoreText_greenbean = game.add.text(226, 16, 'Green Bean: 0', { fontSize :'32px', fill :'#000' } );
-		scoreText_taro = game.add.text(486, 16, 'Taro: 0', { fontSize :'32px', fill :'#000' } );
+		scoreText_redbean = game.add.text(16, 16, 'Red Bean: '+redbean_num, { fontSize :'32px', fill :'#000' } );
+		scoreText_greenbean = game.add.text(226, 16, 'Green Bean: '+greenbean_num, { fontSize :'32px', fill :'#000' } );
+		scoreText_taro = game.add.text(486, 16, 'Taro: '+taro_num, { fontSize :'32px', fill :'#000' } );
 
 		redbeans = game.add.group();
 		redbeans.enableBody = true;
