@@ -1,6 +1,8 @@
 var menuState = {
    create:function(){
-      score = 0; 
+      redbean_num=0;
+      greenbean_num=0;
+      taro_num=0;
 	    start = game.add.sprite(0, 0, 'start');
       start.scale.setTo(scaleWidth,scaleHeight);
       var Spacekey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
