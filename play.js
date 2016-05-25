@@ -13,6 +13,7 @@ var playState = {
       redbeans.alpha=0.25;
       greenbeans.alpha=0.25;
       taro.alpha=0.25;
+      cat.alpha=0.25;
       con = game.add.sprite(innerWidth*2.75/10,innerHeight/16,'continue');
 		  con.scale.setTo(scaleWidth, scaleHeight);
 //      con.inputEnabled = true;
@@ -58,6 +59,7 @@ var playState = {
       redbeans.alpha=1;
       greenbeans.alpha=1;
       taro.alpha=1;
+      cat.alpha=1;
       game.paused = false;
       //game.state.start('play');
     }
@@ -138,7 +140,7 @@ var playState = {
 		// background
 		game.physics.arcade.gravity.y = 1500; //地圖重力
 
-		background = game.add.tileSprite(0, 0, 1920, 1080, 'background');
+		background = game.add.tileSprite(0, 0, 5760, 1080, 'background');
 	  background.scale.setTo(scaleWidth, scaleHeight);
 	  bound = game.add.sprite(-innerWidth-300, 0, 'background');
 	  bound.scale.setTo(scaleWidth, scaleHeight);
