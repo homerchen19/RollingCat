@@ -1,0 +1,28 @@
+{
+
+    "taro": [
+        
+            {
+                "density": 0, "friction": 0, "bounce": 0, 
+                "filter": { "categoryBits": 2, "maskBits": 1 },
+                "shape": [   225, 53  ,  217, 109  ,  158, 186  ,  31, 147  ,  106, 0  ,  126, 0  ,  188, 9  ,  220, 22  ]
+            } ,
+            {
+                "density": 0, "friction": 0, "bounce": 0, 
+                "filter": { "categoryBits": 2, "maskBits": 1 },
+                "shape": [   158, 186  ,  217, 109  ,  202, 151  ]
+            } ,
+            {
+                "density": 0, "friction": 0, "bounce": 0, 
+                "filter": { "categoryBits": 2, "maskBits": 1 },
+                "shape": [   8, 28  ,  106, 0  ,  31, 147  ,  16, 126  ,  2, 64  ,  0, 34  ]
+            } ,
+            {
+                "density": 0, "friction": 0, "bounce": 0, 
+                "filter": { "categoryBits": 2, "maskBits": 1 },
+                "shape": [   31, 147  ,  158, 186  ,  128, 195  ]
+            }
+    ]
+
+
+}

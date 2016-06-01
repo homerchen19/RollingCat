@@ -1,0 +1,36 @@
+{
+    "desk": [
+        
+            {
+                "density": 0, "friction": 0, "bounce": 0, 
+                "filter": { "categoryBits": 4, "maskBits": 1 },
+                "shape": [   269, 337  ,  270, 302  ,  304, 308  ,  310, 340  ]
+            } ,
+            {
+                "density": 0, "friction": 0, "bounce": 0, 
+                "filter": { "categoryBits": 4, "maskBits": 1 },
+                "shape": [   69, 311  ,  107, 342  ,  37, 339  ,  36, 320  ]
+            } ,
+            {
+                "density": 0, "friction": 0, "bounce": 0, 
+                "filter": { "categoryBits": 4, "maskBits": 1 },
+                "shape": [   1, 30  ,  43, 1  ,  16, 61  ,  3, 61  ]
+            } ,
+            {
+                "density": 0, "friction": 0, "bounce": 0, 
+                "filter": { "categoryBits": 4, "maskBits": 1 },
+                "shape": [   43, 1  ,  306, 1  ,  342, 61  ,  197, 218  ,  146, 212  ,  79, 147  ,  16, 61  ]
+            } ,
+            {
+                "density": 0, "friction": 0, "bounce": 0, 
+                "filter": { "categoryBits": 4, "maskBits": 1 },
+                "shape": [   342, 61  ,  306, 1  ,  355, 31  ,  354, 59  ]
+            } ,
+            {
+                "density": 0, "friction": 0, "bounce": 0, 
+                "filter": { "categoryBits": 4, "maskBits": 1 },
+                "shape": [   146, 212  ,  197, 218  ,  270, 302  ,  269, 337  ,  107, 342  ,  69, 311  ]
+            }
+    ]
+
+}
