@@ -53,7 +53,6 @@ app.post('/materia_num',function(req,res){
         }
      }
 });
-	
 app.listen(8800,function(){
    console.log('Server is run!');
 });
