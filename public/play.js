@@ -24,7 +24,7 @@ var playState = {
 
       num_1 = game.add.sprite(innerWidth*13/20,innerHeight/16,'result_taro');
 		  num_1.scale.setTo(scaleWidth, scaleHeight);
-		  n_taro = game.add.text(innerWidth*18/20, innerHeight*5/32, ' /50', { fontSize :0.0694*innerWidth+'px', fill :'#ffffff' } );
+		  n_taro = game.add.text(innerWidth*19/20, innerHeight*5/32, ' /50', { fontSize :0.0694*innerWidth+'px', fill :'#ffffff' } );
 		  c_taro = game.add.text(innerWidth*16/20, innerHeight*3/32, taro_num, { fontSize :0.105*innerWidth+'px', fill :'#ffffff' } );
       setTimeout(function(){
           playState.move(num_1);
@@ -147,9 +147,9 @@ var playState = {
 		// background
 		game.physics.arcade.gravity.y = 1500; //地圖重力
 
-		background = game.add.tileSprite(0, 0, 5760, 1080, 'background');
+		background = game.add.tileSprite(0, 0, 1960, 1080, 'background');
 	  background.scale.setTo(scaleWidth, scaleHeight);
-	  bound = game.add.sprite(-innerWidth-300, 0, 'background');
+	  bound = game.add.sprite(-innerWidth-300, 0, 'over');
 	  bound.scale.setTo(scaleWidth, scaleHeight);
 	  game.physics.arcade.enable(bound);
 	  bound.body.allowGravity = false;
@@ -228,15 +228,15 @@ var playState = {
 	}
   ,
 	update:function() {
-		//game.physics.arcade.collide(cat, stones);
-	  	game.physics.arcade.overlap(cat, redbeans, playState.collectRedBeans, null, this);
-	  	game.physics.arcade.overlap(cat, desks, playState.die, null, this);
+//		  game.physics.arcade.collide(cat, stones);
+	    game.physics.arcade.overlap(cat, redbeans, playState.collectRedBeans, null, this);
+	    game.physics.arcade.overlap(cat, desks, playState.die, null, this);
 	    game.physics.arcade.overlap(bound, [redbeans,greenbeans,taros,desks,chairs], playState.hitbound, null, this);
 	    game.physics.arcade.overlap(cat, chairs, playState.die, null, this);
-	  	game.physics.arcade.overlap(cat, greenbeans, playState.collectGreenBeans, null, this);
+	    game.physics.arcade.overlap(cat, greenbeans, playState.collectGreenBeans, null, this);
 	  	game.physics.arcade.overlap(cat, taros, playState.collectTaros, null, this);
-	  	//game.physics.arcade.overlap(cat, redbeans, playState.collectBeans, null, this);
-	  	background.tilePosition.x += -50;
+	  	game.physics.arcade.overlap(cat, redbeans, playState.collectBeans, null, this);
+	  	background.tilePosition.x += -15;
     	cat.body.velocity.x = 0;
    		cat.angle += 10; //旋轉
 

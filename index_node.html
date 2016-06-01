@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<title>Rolling Cat</title>
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+	<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+  <script type='text/javascript' src='./boot.js'></script>
+  <script type='text/javascript' src='./load_node.js'></script>
+  <script type='text/javascript' src='./login.js'></script>
+  <script type='text/javascript' src='./menu.js'></script>
+  <script type='text/javascript' src='./play.js'></script> 
+  <script type='text/javascript' src='./over.js'></script>
+  <script type='text/javascript' src='./game.js'></script>
+  <style type="text/css">
+        body {
+            margin: 0;
+        }
+  </style>
+</head>
+<body>
+ <script>
+  window.fbAsyncInit = function() {
+      FB.init({
+          appId      : '499968586875221',
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v2.6'
+          });
+  };
+
+  (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+</body>
+</html>
