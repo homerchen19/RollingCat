@@ -1,15 +1,19 @@
 var loginState = {
-   
-   create:function(){
-      game.stage.backgroundColor ='rgb(255,204,102)';
-		  var Height = game.cache.getImage("Login").height;
-		  var Width = game.cache.getImage("Login").width;
-	    login = game.add.sprite(game.world.centerX-Width*scaleWidth/2, game.world.centerY-Height*scaleHeight/2, 'Login');
-      login.scale.setTo(scaleWidth,scaleHeight);
-      var Spacekey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-      Spacekey.onDown.add(this.start,this);
 
+   create:function(){
+       game.stage.backgroundColor ='rgb(255,204,102)';
+       var Height = game.cache.getImage("Login").height;
+       var Width = game.cache.getImage("Login").width;
+       login = game.add.sprite(game.world.centerX-Width*scaleWidth/2, game.world.centerY-Height*scaleHeight/2, 'Login');
+       login.scale.setTo(scaleWidth,scaleHeight);
+    //    var Spacekey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    //    Spacekey.onDown.add(this.start,this);
+        game.input.mouse.capture = true;
    },
+    update : function() {
+        if(game.input.activePointer.isDown)
+            game.state.start('play');
+    },
    start:function(){
      FB.getLoginStatus(function(res){
         loginState.statusChangeCallback(res);
@@ -52,7 +56,7 @@ var loginState = {
                   });
              }
           },{scope:'public_profile,email'});
-          console.log('Type3'); 
+          console.log('Type3');
        }
    }
 };

@@ -5,7 +5,7 @@ var playState = {
       //game.physics.arcade.isPaused = (game.physics.arcade.isPaused)? false :true;
       obj.kill();
       game.paused = true;
-      
+
       //game.state.start('over');
       background.alpha=0.25;
       chairs.alpha=0.25;
@@ -35,7 +35,7 @@ var playState = {
 		  num_2.scale.setTo(scaleWidth, scaleHeight);
 		  n_redbean = game.add.text(innerWidth*16/20, innerHeight*15/32, ' /50', { fontSize:0.0694*innerWidth+'px', fill :'#ffffff' } );
 		  c_redbean = game.add.text(innerWidth*14/20, innerHeight*13/32, redbean_num , { fontSize :0.105*innerWidth+'px', fill :'#ffffff' } );
-    
+
       num_3 = game.add.sprite(innerWidth*11/20,innerHeight*11/16,'result_greenbean');
 		  num_3.scale.setTo(scaleWidth, scaleHeight);
 		  n_greenbean = game.add.text(innerWidth*16/20, innerHeight*25/32, ' /50', { fontSize :0.0694*innerWidth+'px', fill :'#ffffff' } );
@@ -113,31 +113,31 @@ var playState = {
 		    }
 		    else if(x == 2){
 		      	max_x += half_innerWidth + game.rnd.integerInRange(desk.width, half_innerWidth)
-		        desk = desks.create(max_x, innerHeight - desk.height, 'desk'); 
+		        desk = desks.create(max_x, innerHeight - desk.height, 'desk');
 		        desk.scale.setTo(scaleWidth,scaleHeight);
-		        desk.body.velocity.x = desk_v;  
-		        desk.body.allowGravity = false;       
+		        desk.body.velocity.x = desk_v;
+		        desk.body.allowGravity = false;
 		    }
 		    else if(x == 3){
 		      	max_x += half_innerWidth + game.rnd.integerInRange(chair.width, half_innerWidth)
-		        chair = chairs.create(max_x, innerHeight - chair.height, 'chair'); 
+		        chair = chairs.create(max_x, innerHeight - chair.height, 'chair');
 		        chair.scale.setTo(scaleWidth,scaleHeight);
-		        chair.body.velocity.x = chair_v;    
-		        chair.body.allowGravity = false;    
+		        chair.body.velocity.x = chair_v;
+		        chair.body.allowGravity = false;
 		    }
 		    else if(x == 4){
 		      	max_x += half_innerWidth + game.rnd.integerInRange(greenbean.width, half_innerWidth)
 		        greenbean = greenbeans.create(max_x, game.rnd.integerInRange(0, innerHeight - greenbean.height), 'greenbean');
 		        greenbean.scale.setTo(scaleWidth,scaleHeight);
-		        greenbean.body.velocity.x = greenbean_v;    
-		        greenbean.body.allowGravity = false;    
+		        greenbean.body.velocity.x = greenbean_v;
+		        greenbean.body.allowGravity = false;
 		    }
 		    else {
 		      	max_x += half_innerWidth + game.rnd.integerInRange(taro.width, half_innerWidth)
 		        taro = taros.create(max_x, game.rnd.integerInRange(0, innerHeight - taro.height), 'taro');
 		        taro.scale.setTo(scaleWidth,scaleHeight);
-		        taro.body.velocity.x = taro_v;    
-		        taro.body.allowGravity = false;    
+		        taro.body.velocity.x = taro_v;
+		        taro.body.allowGravity = false;
 		    }
 		    //console.log(max_x);
 	    }
@@ -153,6 +153,8 @@ var playState = {
 	  bound.scale.setTo(scaleWidth, scaleHeight);
 	  game.physics.arcade.enable(bound);
 	  bound.body.allowGravity = false;
+
+      game.input.mouse.capture = true;
 		// obstacle groups
 		desks = game.add.group();
 		//game.physics.arcade.enable(desks);
@@ -204,7 +206,7 @@ var playState = {
     taros = game.add.group();
     taros.enableBody = true;
    // game.physics.arcade.enable(taros);
-    
+
 		//for (var i = 0 ; i < 2 ; i++){
 		redbean = redbeans.create(2800, 0, 'redbean');
 		redbean.scale.setTo(scaleWidth, scaleHeight);
@@ -227,7 +229,7 @@ var playState = {
 
 	}
   ,
-	update:function() {
+    update:function() {
 //		  game.physics.arcade.collide(cat, stones);
 	    game.physics.arcade.overlap(cat, redbeans, playState.collectRedBeans, null, this);
 	    game.physics.arcade.overlap(cat, desks, playState.die, null, this);
@@ -244,7 +246,7 @@ var playState = {
 	       playState.createElement(5);
 	    }
 
-	    //偵測有沒有碰到地板
+        //偵測有沒有碰到地板
 		var onTheGround = cat.body.blocked.down;
 
 	    if (onTheGround) {
@@ -255,13 +257,26 @@ var playState = {
 	    // Jump!
 	    if (jumps > 0 && playState.upInputIsActive(5)) {
 	        cat.body.velocity.y = -innerHeight * 2;
-	        jumps--;
+            jumping = true;
 	    }
-	  }
-  ,  
+
+        if (jumping && playState.upInputReleased()) {
+            jumps--;
+            jumping = false;
+        }
+	  },
 	upInputIsActive : function(duration) {
 	    var isActive = false;
-	    isActive = game.input.keyboard.downDuration(Phaser.Keyboard.UP, duration);
+	    isActive = game.input.activePointer.justPressed(duration + 1000/60);
+        console.log(isActive);
 	    return isActive;
-	}
+	},
+    upInputReleased : function() {
+        var released = false;
+
+        released = game.input.keyboard.upDuration(Phaser.Keyboard.UP);
+        released |= game.input.activePointer.justReleased();
+
+        return released;
+    }
 };
