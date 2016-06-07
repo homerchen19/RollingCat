@@ -16,8 +16,9 @@
   var taro_v = -1000;
   var desk_v = -1000;
   var chair_v = -1000;
-	var mylatesttap; 
+	var mylatesttap;
 	var jumps = 2;
+	var jumping = false;
   var username;
 	var game = new Phaser.Game(innerWidth, innerHeight, Phaser.AUTO,'');
 	var randomXPosition = game.rnd.integerInRange(innerWidth, innerWidth * 1.5);
