@@ -22,15 +22,10 @@ var playState = {
       //restart.inputEnable = true;
       $.post('/materia_num',{name:username,redbean:redbean_num,greenbean:greenbean_num,taro:taro_num});
 
-      num_1 = game.add.sprite(innerWidth*13/20,innerHeight/16,'result_taro');
+      num_1 = game.add.sprite(innerWidth*11/20,innerHeight/16,'result_taro');
 		  num_1.scale.setTo(scaleWidth, scaleHeight);
-		  n_taro = game.add.text(innerWidth*19/20, innerHeight*5/32, ' /50', { fontSize :0.0694*innerWidth+'px', fill :'#ffffff' } );
-		  c_taro = game.add.text(innerWidth*16/20, innerHeight*3/32, taro_num, { fontSize :0.105*innerWidth+'px', fill :'#ffffff' } );
-      setTimeout(function(){
-          playState.move(num_1);
-          playState.move(n_taro);
-          playState.move(c_taro);
-      },500);
+		  n_taro = game.add.text(innerWidth*16/20, innerHeight*5/32, ' /50', { fontSize :0.0694*innerWidth+'px', fill :'#ffffff' } );
+		  c_taro = game.add.text(innerWidth*14/20, innerHeight*3/32, taro_num, { fontSize :0.105*innerWidth+'px', fill :'#ffffff' } );
       num_2 = game.add.sprite(innerWidth*11/20,innerHeight*6/16,'result_redbean');
 		  num_2.scale.setTo(scaleWidth, scaleHeight);
 		  n_redbean = game.add.text(innerWidth*16/20, innerHeight*15/32, ' /50', { fontSize:0.0694*innerWidth+'px', fill :'#ffffff' } );
