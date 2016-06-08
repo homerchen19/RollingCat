@@ -8,12 +8,9 @@ var loginState = {
        login.scale.setTo(scaleWidth,scaleHeight);
     //    var Spacekey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     //    Spacekey.onDown.add(this.start,this);
-        game.input.mouse.capture = true;
+       login.inputEnabled = true;
+       login.events.onInputDown.add(loginState.start,this);
    },
-    update : function() {
-        if(game.input.activePointer.isDown)
-            game.state.start('play');
-    },
    start:function(){
      FB.getLoginStatus(function(res){
         loginState.statusChangeCallback(res);
@@ -50,7 +47,7 @@ var loginState = {
                         redbean_num = data.redbean;
                         greenbean_num = data.greenbean;
                         taro_num = data.taro;
-                        game.state.start('menu');
+                        game.state.start('loadstory');
                         game.stage.backgroundColor ='#000000';
                      });
                   });
