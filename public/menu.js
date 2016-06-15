@@ -1,19 +1,19 @@
 var menuState = {
-   create:function(){
-	    map = game.add.sprite(0, 0, 'map');
-      map.scale.setTo(scaleWidth,scaleHeight);
-		  var Height = game.cache.getImage("noodle").height;
-		  var Width = game.cache.getImage("noodle").width;
-      noodle = game.add.sprite(innerWidth*4/5-Width*scaleWidth/2,innerHeight/2-Height*scaleHeight/2,'noodle');
-      noodle.scale.setTo(scaleWidth,scaleHeight);
-		  var Height_2 = game.cache.getImage("option").height;
-		  var Width_2 = game.cache.getImage("option").width;
-      option = game.add.sprite(innerWidth/20,0,'option');
-      option.scale.setTo(scaleWidth,scaleHeight);
-//      var Spacekey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-//      Spacekey.onDown.add(this.start,this);
-       noodle.inputEnabled = true;
-       noodle.events.onInputDown.add(this.start,this);
+    create: function() {
+        map = game.add.sprite(0, 0, 'map');
+        map.scale.setTo(scaleWidth, scaleHeight);
+        var Height = game.cache.getImage("noodle").height;
+        var Width = game.cache.getImage("noodle").width;
+        noodle = game.add.sprite(innerWidth * 4 / 5 - Width * scaleWidth / 2, innerHeight / 2 - Height * scaleHeight / 2, 'noodle');
+        noodle.scale.setTo(scaleWidth, scaleHeight);
+        var Height_2 = game.cache.getImage("option").height;
+        var Width_2 = game.cache.getImage("option").width;
+        option = game.add.sprite(innerWidth / 20, 0, 'option');
+        option.scale.setTo(scaleWidth, scaleHeight);
+        //      var Spacekey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        //      Spacekey.onDown.add(this.start,this);
+        noodle.inputEnabled = true;
+        noodle.events.onInputDown.add(this.start, this);
 
        option.inputEnabled = true;
        option.events.onInputDown.add(this.jumpoption,this);
