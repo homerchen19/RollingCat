@@ -1,5 +1,6 @@
 	const innerWidth = window.innerWidth;
 	const innerHeight = window.innerHeight;
+	console.log(innerHeight);
 	const gameRatio = innerWidth / innerHeight;
 	const scaleWidth = innerWidth / 1920;
 	const scaleHeight = innerHeight / 1080;
@@ -12,18 +13,23 @@
 	var redbean_num = 0;
 	var greenbean_num = 0;
 	var taro_num = 0;
-	var redbean_v = -1000;
-	var greenbean_v = -1000;
-	var taro_v = -1000;
-	var desk_v = -1000;
-	var chair_v = -1000;
+	var redbean_v = -1000 * scaleWidth;
+	var greenbean_v = -1000 * scaleWidth;
+	var taro_v = -1000 * scaleWidth;
+	var desk_v = -1000 * scaleWidth;
+	var chair_v = -1000 * scaleWidth;
 	var mylatesttap;
-	var jumps = 2;
-	var al=false,jumping = false;
-  var option_d = false;
-  var username;
-	var game = new Phaser.Game(innerWidth, innerHeight, Phaser.AUTO,'');
+	var jumps = 2,
+		jumpHeight = 3;
+	var al = false,
+	    jumping = false;
+	var option_d = false;
+	var username;
+	var game = new Phaser.Game(innerWidth, innerHeight, Phaser.AUTO, '');
 	var randomXPosition = game.rnd.integerInRange(innerWidth, innerWidth * 1.5);
+
+
+
 	game.state.add('boot', bootState);
 	//game.state.add('load_node', loadState);
 	game.state.add('load', loadState);
