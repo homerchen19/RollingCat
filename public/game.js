@@ -13,11 +13,12 @@
 	var redbean_num = 0;
 	var greenbean_num = 0;
 	var taro_num = 0;
-	var redbean_v = -1000 * scaleWidth;
-	var greenbean_v = -1000 * scaleWidth;
-	var taro_v = -1000 * scaleWidth;
-	var desk_v = -1000 * scaleWidth;
-	var chair_v = -1000 * scaleWidth;
+	var levelSpeed = 1;
+	var redbean_v = -1400 * scaleWidth;
+	var greenbean_v = -1400 * scaleWidth;
+	var taro_v = -1400 * scaleWidth;
+	var desk_v = -1100 * scaleWidth;
+	var chair_v = -1100 * scaleWidth;
 	var mylatesttap;
 	var jumps = 2,
 		jumpHeight = 3;

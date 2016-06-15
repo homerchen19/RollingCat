@@ -161,6 +161,7 @@ var playState = {
             redbean_num = redbean_num + 1;
             scoreText_redbean.text = 'Red Bean:' + redbean_num;
         }
+        playState.changeSpeed();
         redbean.kill();
     },
     collectGreenBeans: function(cat, greenbean) {
@@ -169,6 +170,7 @@ var playState = {
             greenbean_num = greenbean_num + 1;
             scoreText_greenbean.text = 'Green Bean:' + greenbean_num;
         }
+        playState.changeSpeed();
         greenbean.kill();
     },
     collectTaros: function(cat, taro) {
@@ -177,6 +179,7 @@ var playState = {
             taro_num = taro_num + 1;
             scoreText_taro.text = 'Taro:' + taro_num;
         }
+        playState.changeSpeed();
         taro.kill();
     },
     createElement: function(num) {
@@ -189,37 +192,37 @@ var playState = {
                 max_x += half_innerWidth + game.rnd.integerInRange(redbean.width, half_innerWidth);
                 redbean = redbeans.create(max_x, game.rnd.integerInRange(0, innerHeight - redbean.height), 'redbean');
                 redbean.scale.setTo(scaleWidth, scaleHeight);
-                redbean.body.velocity.x = redbean_v;
+                redbean.body.velocity.x = redbean_v * levelSpeed;;
                 redbean.body.allowGravity = false;
             } else if (x == 2) {
                 max_x += half_innerWidth + game.rnd.integerInRange(desk.width, half_innerWidth)
                 desk = desks.create(max_x, innerHeight - desk.height, 'desk');
                 desk.scale.setTo(scaleWidth, scaleHeight);
-                desk.body.velocity.x = desk_v;
+                desk.body.velocity.x = desk_v * levelSpeed;;
                 desk.body.allowGravity = false;
             } else if (x == 3) {
                 max_x += half_innerWidth + game.rnd.integerInRange(chair.width, half_innerWidth)
                 chair = chairs.create(max_x, innerHeight - chair.height, 'chair');
                 chair.scale.setTo(scaleWidth, scaleHeight);
-                chair.body.velocity.x = chair_v;
+                chair.body.velocity.x = chair_v * levelSpeed;;
                 chair.body.allowGravity = false;
             } else if (x == 4) {
                 max_x += half_innerWidth + game.rnd.integerInRange(greenbean.width, half_innerWidth)
                 greenbean = greenbeans.create(max_x, game.rnd.integerInRange(0, innerHeight - greenbean.height), 'greenbean');
                 greenbean.scale.setTo(scaleWidth, scaleHeight);
-                greenbean.body.velocity.x = greenbean_v;
+                greenbean.body.velocity.x = greenbean_v * levelSpeed;;
                 greenbean.body.allowGravity = false;
             } else if (x == 5) {
                 max_x += half_innerWidth + game.rnd.integerInRange(taro.width, half_innerWidth)
                 taro = taros.create(max_x, game.rnd.integerInRange(0, innerHeight - taro.height), 'taro');
                 taro.scale.setTo(scaleWidth, scaleHeight);
-                taro.body.velocity.x = taro_v;
+                taro.body.velocity.x = taro_v * levelSpeed;;
                 taro.body.allowGravity = false;
             } else {
                 max_x += half_innerWidth + game.rnd.integerInRange(chair_2.width, half_innerWidth)
                 chair_2 = chair_2s.create(max_x, innerHeight - chair_2.height, 'chair_2');
                 chair_2.scale.setTo(scaleWidth, scaleHeight);
-                chair_2.body.velocity.x = chair_v;
+                chair_2.body.velocity.x = chair_v * levelSpeed;;
                 chair_2.body.allowGravity = false;
             }
             //console.log(max_x);
@@ -327,20 +330,20 @@ var playState = {
             Phaser.Keyboard.UP
         ]);
 
-        if(innerHeight <= 414)
-            jumpHeight =  6;
+        if (innerHeight <= 414)
+            jumpHeight = 6;
     },
     update: function() {
         //game.physics.arcade.collide(cat, stones);
         game.physics.arcade.overlap(cat, redbeans, playState.collectRedBeans, null, this);
+        game.physics.arcade.overlap(cat, greenbeans, playState.collectGreenBeans, null, this);
+        game.physics.arcade.overlap(cat, taros, playState.collectTaros, null, this);
+
         game.physics.arcade.overlap(cat, desks, playState.die, null, this);
         game.physics.arcade.overlap(cat, chair_2s, playState.die, null, this);
         game.physics.arcade.overlap(bound, [redbeans, greenbeans, taros, desks, chairs], playState.hitbound, null, this);
         game.physics.arcade.overlap(cat, chairs, playState.die, null, this);
-        game.physics.arcade.overlap(cat, greenbeans, playState.collectGreenBeans, null, this);
-        game.physics.arcade.overlap(cat, taros, playState.collectTaros, null, this);
-        game.physics.arcade.overlap(cat, redbeans, playState.collectBeans, null, this);
-        background.tilePosition.x += -15 * scaleWidth;
+        background.tilePosition.x += -20 * scaleWidth * levelSpeed;
         cat.body.velocity.x = 0;
         cat.angle += 10; //旋轉
 
@@ -378,5 +381,31 @@ var playState = {
         released |= game.input.activePointer.justReleased();
 
         return released;
+    },
+    changeSpeed: function() {
+        var sum = taro_num + redbean_num + greenbean_num;
+        if (sum > 5 && sum <= 10)
+            levelSpeed = 1.2;
+        else if (sum > 10 && sum <= 15)
+            levelSpeed = 1.4;
+        else if (sum > 15 && sum <= 25)
+            levelSpeed = 1.6;
+        else if (sum > 25 && sum <= 35)
+            levelSpeed = 1.8;
+        else if (sum > 35 && sum <= 50)
+            levelSpeed = 2;
+        else if (sum > 50 && sum <= 75)
+            levelSpeed = 2.3;
+        else if (sum > 75 && sum <= 100)
+            levelSpeed = 2.5;
+        else if (sum > 100)
+            levelSpeed = 3;
+
+        redbean.body.velocity.x = redbean_v * levelSpeed;
+        greenbean.body.velocity.x = redbean_v * levelSpeed;
+        taro.body.velocity.x = redbean_v * levelSpeed;
+        desk.body.velocity.x = desk_v * levelSpeed;
+        chair.body.velocity.x = chair_v * levelSpeed;
+        chair_2.body.velocity.x = chair_v * levelSpeed;
     }
 };
