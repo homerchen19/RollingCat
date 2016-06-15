@@ -23,6 +23,6 @@ var loadState = {
       game.load.image('alterbox','assets/alterbox.png');
     },
     create:function(){
-      game.state.start('login');
+      game.state.start('menu');
     }
 };

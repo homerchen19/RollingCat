@@ -10,7 +10,8 @@ var playState = {
       desks.alpha=0.25;
       redbeans.alpha=0.25;
       greenbeans.alpha=0.25;
-      taro.alpha=0.25;
+      taros.alpha=0.25;
+      chair_2s.alpha = 0.25;
       cat.alpha=0.25;
       con = game.add.sprite(innerWidth*2.75/10,innerHeight/16,'continue');
 		  con.scale.setTo(scaleWidth, scaleHeight);
@@ -33,6 +34,14 @@ var playState = {
 		  num_3.scale.setTo(scaleWidth, scaleHeight);
 		  n_greenbean = game.add.text(innerWidth*16/20, innerHeight*25/32, ' /50', { fontSize :0.0694*innerWidth+'px', fill :'#ffffff' } );
       c_greenbean = game.add.text(innerWidth*14/20, innerHeight*23/32, greenbean_num, { fontSize :0.105*innerWidth+'px', fill :'#ffffff' } );
+      
+      
+      //game.add.tween(num_2).to({y:0},2000,Phaser.Easing.Exponential.In,true,0,0,false);
+      //game.add.tween(c_redbean).to({y:0},2000,Phaser.Easing.Exponential.In,true,0,0,false);
+      //game.add.tween(n_redbean).to({y:0},2000,Phaser.Easing.Exponential.In,true,0,0,false);
+      //game.add.tween(num_3).to({y:0},2000,Phaser.Easing.Exponential.In,true,0,0,false);
+      //game.add.tween(c_greenbean).to({y:innerWidth*14/20},1500,Phaser.Easing.Exponential.In,true,0,0,false);
+      //game.add.tween(n_greenbean).to({y:innerWidth*16/20},2000,Phaser.Easing.Exponential.In,true,0,0,false);
       
       
        game.input.onDown.add(playState.checkforbt,self);
@@ -92,7 +101,8 @@ var playState = {
       desks.alpha=1;
       redbeans.alpha=1;
       greenbeans.alpha=1;
-      taro.alpha=1;
+      taros.alpha=1;
+      chair_2s.alpha = 1;
       cat.alpha=1;
       game.paused = false;
       //game.state.start('play');
@@ -129,27 +139,30 @@ var playState = {
   	}
     ,
 	  collectRedBeans:function(cat, redbean){
-    if(redbean_num<51){
+    if(redbean_num<50){
 		  redbean.kill();
 		  redbean_num = redbean_num+ 1;
 		  scoreText_redbean.text = 'Red Bean:'+redbean_num;
 	  }
+		  redbean.kill();
     }
     ,
 	  collectGreenBeans:function(cat, greenbean){
-    if(greenbean_num<51){
+    if(greenbean_num<50){
 		  greenbean.kill();
 		  greenbean_num = greenbean_num+ 1;
 		  scoreText_greenbean.text = 'Green Bean:'+greenbean_num;
     }
+		  greenbean.kill();
 	  }
     ,
 	  collectTaros:function(cat, taro){
-    if(taro_num<51){
+    if(taro_num<50){
 		  taro.kill();
 		  taro_num = taro_num+ 1;
 		  scoreText_taro.text = 'Taro:'+taro_num;
 	  } 
+		  taro.kill();
     }
     ,
   	createElement:function(num) {
@@ -208,7 +221,7 @@ var playState = {
 		// background
 		game.physics.arcade.gravity.y = 1500; //地圖重力
 
-		background = game.add.tileSprite(0, 0, 1960, 1080, 'background');
+		background = game.add.tileSprite(0, 0, 1960*3, 1080, 'background');
 	  background.scale.setTo(scaleWidth, scaleHeight);
 	  bound = game.add.sprite(-innerWidth-300, 0, 'over');
 	  bound.scale.setTo(scaleWidth, scaleHeight);
@@ -263,21 +276,20 @@ var playState = {
 		cat.animations.add('right',[5,6,7,8],10,true);
 	    */
 
-		// scoreText
+		//scoreText
 		scoreText_redbean = game.add.text(16, 16, 'Red Bean: '+redbean_num, { fontSize :'32px', fill :'#000' } );
 		scoreText_greenbean = game.add.text(226, 16, 'Green Bean: '+greenbean_num, { fontSize :'32px', fill :'#000' } );
 		scoreText_taro = game.add.text(486, 16, 'Taro: '+taro_num, { fontSize :'32px', fill :'#000' } );
 
 		redbeans = game.add.group();
 		redbeans.enableBody = true;
-   // game.physics.arcade.enable(redbeans);
+    //game.physics.arcade.enable(redbeans);
 		greenbeans = game.add.group();
 		greenbeans.enableBody = true;
-	 //game.physics.arcade.enable(greenbeans);
+	  //game.physics.arcade.enable(greenbeans);
     taros = game.add.group();
     taros.enableBody = true;
-   // game.physics.arcade.enable(taros);
-
+    //game.physics.arcade.enable(taros);
 		//for (var i = 0 ; i < 2 ; i++){
 		redbean = redbeans.create(2800, 0, 'redbean');
 		redbean.scale.setTo(scaleWidth, scaleHeight);
@@ -300,8 +312,8 @@ var playState = {
 
 	}
   ,
-    update:function() {
-//		  game.physics.arcade.collide(cat, stones);
+  update:function() {
+      //game.physics.arcade.collide(cat, stones);
 	    game.physics.arcade.overlap(cat, redbeans, playState.collectRedBeans, null, this);
 	    game.physics.arcade.overlap(cat, desks, playState.die, null, this);
 	    game.physics.arcade.overlap(cat, chair_2s, playState.die, null, this);

@@ -20,6 +20,7 @@
 	var mylatesttap;
 	var jumps = 2;
 	var al=false,jumping = false;
+  var option_d = false;
   var username;
 	var game = new Phaser.Game(innerWidth, innerHeight, Phaser.AUTO,'');
 	var randomXPosition = game.rnd.integerInRange(innerWidth, innerWidth * 1.5);
