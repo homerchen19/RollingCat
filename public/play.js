@@ -331,7 +331,7 @@ var playState = {
         ]);
 
         if (innerHeight <= 414)
-            jumpHeight = 6;
+            jumpHeight = 7;
     },
     update: function() {
         //game.physics.arcade.collide(cat, stones);
