@@ -278,7 +278,7 @@ var playState = {
         chair_2.body.allowGravity = false;
         // cat
         cat = game.add.sprite(game.world.width * 0.2, game.world.height - 500, 'cat');
-        cat.scale.setTo(scaleWidth, scaleHeight);
+        cat.scale.setTo(scaleWidth * 0.9, scaleHeight);
         cat.anchor.setTo(0.5, 0.5);
         game.physics.arcade.enable(cat);
         cat.body.gravity.y = innerHeight;

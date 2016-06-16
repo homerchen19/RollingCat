@@ -24,6 +24,12 @@ var loadState = {
         game.load.image('noodle', 'assets/noodle.png');
         game.load.image('map', 'assets/map.jpg');
         game.load.image('alterbox', 'assets/alterbox.png');
+        game.load.image('redbean_info', 'assets/redbean_info.png');
+        game.load.image('greenbean_info', 'assets/greenbean_info.png');
+        game.load.image('taro_info', 'assets/taro_info.png');
+        game.load.image('back_to_menu', 'assets/back_to_menu.png');
+        game.load.image('up_arrow', 'assets/up_arrow.png');
+        game.load.image('down_arrow', 'assets/down_arrow.png');
     },
     create:function(){
       game.state.start('menu');

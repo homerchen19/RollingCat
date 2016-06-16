@@ -1,6 +1,5 @@
 	const innerWidth = window.innerWidth;
 	const innerHeight = window.innerHeight;
-	console.log(innerHeight);
 	const gameRatio = innerWidth / innerHeight;
 	const scaleWidth = innerWidth / 1920;
 	const scaleHeight = innerHeight / 1080;
@@ -28,7 +27,7 @@
 	var username;
 	var game = new Phaser.Game(innerWidth, innerHeight, Phaser.AUTO, '');
 	var randomXPosition = game.rnd.integerInRange(innerWidth, innerWidth * 1.5);
-
+	var current_page = 1;
 
 
 	game.state.add('boot', bootState);
@@ -38,6 +37,7 @@
 	game.state.add('loadstory', loadstoryState);
 	game.state.add('story', storyState);
 	game.state.add('menu', menuState);
+	game.state.add('food', foodState);
 	game.state.add('play', playState);
 	game.state.add('over', overState);
 	game.state.start('boot');
