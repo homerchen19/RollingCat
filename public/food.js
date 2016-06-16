@@ -25,6 +25,7 @@ var foodState = {
         back_to_menu.events.onInputDown.add(this.go_menu, this);
     },
     go_menu: function() {
+        option_d = false;
         game.state.start('menu');
     },
     change_page_up: function() {

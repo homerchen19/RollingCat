@@ -1,8 +1,12 @@
 var playState = {
     die: function(cat, obj) {
+      if(taro_num == finalnum && redbean_num ==finalnum && greenbean_num == finalnum){
+         game.state.start('loadendstory');
+      }
         //cat.kill();
         //game.paused = true;
         //game.physics.arcade.isPaused = (game.physics.arcade.isPaused)? false :true;
+      else{
         obj.kill();
         game.paused = true;
         background.alpha = 0.25;
@@ -68,6 +72,7 @@ var playState = {
 
 
         game.input.onDown.add(playState.checkforbt, self);
+      }
     },
     checkforbt: function(event) {
         if (game.paused) {
@@ -156,7 +161,7 @@ var playState = {
         obj.kill();
     },
     collectRedBeans: function(cat, redbean) {
-        if (redbean_num < 50) {
+        if (redbean_num < finalnum) {
             redbean.kill();
             redbean_num = redbean_num + 1;
             scoreText_redbean.text = 'Red Bean:' + redbean_num;
@@ -165,7 +170,7 @@ var playState = {
         redbean.kill();
     },
     collectGreenBeans: function(cat, greenbean) {
-        if (greenbean_num < 50) {
+        if (greenbean_num < finalnum) {
             greenbean.kill();
             greenbean_num = greenbean_num + 1;
             scoreText_greenbean.text = 'Green Bean:' + greenbean_num;
@@ -174,7 +179,7 @@ var playState = {
         greenbean.kill();
     },
     collectTaros: function(cat, taro) {
-        if (taro_num < 50) {
+        if (taro_num < finalnum) {
             taro.kill();
             taro_num = taro_num + 1;
             scoreText_taro.text = 'Taro:' + taro_num;
@@ -192,37 +197,37 @@ var playState = {
                 max_x += half_innerWidth + game.rnd.integerInRange(redbean.width, half_innerWidth);
                 redbean = redbeans.create(max_x, game.rnd.integerInRange(0, innerHeight - redbean.height), 'redbean');
                 redbean.scale.setTo(scaleWidth, scaleHeight);
-                redbean.body.velocity.x = redbean_v * levelSpeed;;
+                redbean.body.velocity.x = redbean_v * levelSpeed;
                 redbean.body.allowGravity = false;
             } else if (x == 2) {
                 max_x += half_innerWidth + game.rnd.integerInRange(desk.width, half_innerWidth)
                 desk = desks.create(max_x, innerHeight - desk.height, 'desk');
                 desk.scale.setTo(scaleWidth, scaleHeight);
-                desk.body.velocity.x = desk_v * levelSpeed;;
+                desk.body.velocity.x = desk_v * levelSpeed;
                 desk.body.allowGravity = false;
             } else if (x == 3) {
                 max_x += half_innerWidth + game.rnd.integerInRange(chair.width, half_innerWidth)
                 chair = chairs.create(max_x, innerHeight - chair.height, 'chair');
                 chair.scale.setTo(scaleWidth, scaleHeight);
-                chair.body.velocity.x = chair_v * levelSpeed;;
+                chair.body.velocity.x = chair_v * levelSpeed;
                 chair.body.allowGravity = false;
             } else if (x == 4) {
                 max_x += half_innerWidth + game.rnd.integerInRange(greenbean.width, half_innerWidth)
                 greenbean = greenbeans.create(max_x, game.rnd.integerInRange(0, innerHeight - greenbean.height), 'greenbean');
                 greenbean.scale.setTo(scaleWidth, scaleHeight);
-                greenbean.body.velocity.x = greenbean_v * levelSpeed;;
+                greenbean.body.velocity.x = greenbean_v * levelSpeed;
                 greenbean.body.allowGravity = false;
             } else if (x == 5) {
                 max_x += half_innerWidth + game.rnd.integerInRange(taro.width, half_innerWidth)
                 taro = taros.create(max_x, game.rnd.integerInRange(0, innerHeight - taro.height), 'taro');
                 taro.scale.setTo(scaleWidth, scaleHeight);
-                taro.body.velocity.x = taro_v * levelSpeed;;
+                taro.body.velocity.x = taro_v * levelSpeed;
                 taro.body.allowGravity = false;
             } else {
                 max_x += half_innerWidth + game.rnd.integerInRange(chair_2.width, half_innerWidth)
                 chair_2 = chair_2s.create(max_x, innerHeight - chair_2.height, 'chair_2');
                 chair_2.scale.setTo(scaleWidth, scaleHeight);
-                chair_2.body.velocity.x = chair_v * levelSpeed;;
+                chair_2.body.velocity.x = chair_v * levelSpeed;
                 chair_2.body.allowGravity = false;
             }
             //console.log(max_x);
@@ -235,7 +240,7 @@ var playState = {
 
         background = game.add.tileSprite(0, 0, 1960 * 3, 1080, 'background');
         background.scale.setTo(scaleWidth, scaleHeight);
-        bound = game.add.sprite(-innerWidth - 300, 0, 'over');
+        bound = game.add.sprite(-innerWidth - 300, 0, 'login_back');
         bound.scale.setTo(scaleWidth, scaleHeight);
         game.physics.arcade.enable(bound);
         bound.body.allowGravity = false;

@@ -9,8 +9,6 @@ var loadState = {
         game.load.image('redbean', 'assets/redbean.png');
         game.load.image('greenbean', 'assets/greenbean.png');
         game.load.image('taro', 'assets/taro.png');
-        game.load.image('start', 'assets/start.png');
-        game.load.image('over', 'assets/over.jpg');
         game.load.image('desk', 'assets/desk.png');
         game.load.image('chair', 'assets/chair.png');
         game.load.image('chair_2', 'assets/chair_2.png');

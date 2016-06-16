@@ -2,7 +2,7 @@ var storyState = {
    create:function(){
         var storyimg13= game.add.sprite(0,0,13);
         storyimg13.scale.setTo(scaleWidth,scaleHeight);
-        //game.add.tween(storyimg13).to({alpha:0},5000,Phaser.Easing.Exponential.In,true,6000*12,0,false);
+        game.add.tween(storyimg13).to({alpha:0},5000,Phaser.Easing.Exponential.In,true,6000*12,0,false);
         var storyimg12= game.add.sprite(0,0,12);
         storyimg12.scale.setTo(scaleWidth,scaleHeight);
         game.add.tween(storyimg12).to({alpha:0},5000,Phaser.Easing.Exponential.In,true,6000*11,0,false);
@@ -39,15 +39,6 @@ var storyState = {
         var storyimg1= game.add.sprite(0,0,1);
         storyimg1.scale.setTo(scaleWidth,scaleHeight);
         game.add.tween(storyimg1).to({alpha:0},5000,Phaser.Easing.Exponential.In,true,0,0,false);
-     //    var storyimg = game.add.sprite(0,0,2);
-     //    storyimg.scale.setTo(scaleWidth,scaleHeight);
-     //    game.add.tween(storyimg).to({alpha:0},5000,Phaser.Easing.Linear.None,true,10000,0,false);
-	   // map = game.add.sprite(0, 0, 'map');
-     // map.scale.setTo(scaleWidth,scaleHeight);
-		 // var Height = game.cache.getImage("noodle").height;
-		 // var Width = game.cache.getImage("noodle").width;
-    //  storyimg.inputEnabled = true;
-     // storyimg.events.onInputDown.add(this.start,this);
       setTimeout(function(){
          game.input.onDown.add(storyState.start,self);
       },12*6000+5000);
