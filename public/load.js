@@ -24,6 +24,12 @@ var loadState = {
         game.load.image('noodle', './public/assets/noodle.png');
         game.load.image('map', './public/assets/map.jpg');
         game.load.image('alterbox', './public/assets/alterbox.png');
+        game.load.image('redbean_info', './public/assets/redbean_info.png');
+        game.load.image('greenbean_info', './public/assets/greenbean_info.png');
+        game.load.image('taro_info', './public/assets/taro_info.png');
+        game.load.image('back_to_menu', './public/assets/back_to_menu.png');
+        game.load.image('up_arrow', './public/assets/up_arrow.png');
+        game.load.image('down_arrow', './public/assets/down_arrow.png');
     },
     create: function() {
         //game.state.start('login');
