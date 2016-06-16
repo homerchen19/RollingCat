@@ -16,8 +16,8 @@
 	var redbean_v = -1400 * scaleWidth;
 	var greenbean_v = -1400 * scaleWidth;
 	var taro_v = -1400 * scaleWidth;
-	var desk_v = -1100 * scaleWidth;
-	var chair_v = -1100 * scaleWidth;
+	var desk_v = -1400 * scaleWidth;
+	var chair_v = -1400 * scaleWidth;
 	var mylatesttap;
 	var jumps = 2,
 		jumpHeight = 3;
