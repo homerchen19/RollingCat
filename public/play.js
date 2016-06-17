@@ -3,9 +3,6 @@ var playState = {
       if(taro_num == finalnum && redbean_num ==finalnum && greenbean_num == finalnum){
          game.state.start('loadendstory');
       }
-        //cat.kill();
-        //game.paused = true;
-        //game.physics.arcade.isPaused = (game.physics.arcade.isPaused)? false :true;
       else{
         obj.kill();
         game.paused = true;
@@ -17,58 +14,52 @@ var playState = {
         taros.alpha = 0.25;
         chair_2s.alpha = 0.25;
         cat.alpha = 0.25;
-        con = game.add.sprite(innerWidth * 2.75 / 10, innerHeight / 16, 'continue');
+        btm = game.add.sprite(innerWidth * 16.5 / 20, innerHeight / 16, 'btm');
+        btm.scale.setTo(scaleWidth, scaleHeight);
+        con = game.add.sprite(innerWidth * 13.5 / 20, innerHeight / 16, 'continue');
         con.scale.setTo(scaleWidth, scaleHeight);
-        //con.inputEnabled = true;
-        restart = game.add.sprite(innerWidth / 10, innerHeight / 16, 'restart');
+        restart = game.add.sprite(innerWidth*10.5 / 20, innerHeight / 16, 'restart');
         restart.scale.setTo(scaleWidth, scaleHeight);
-        //restart.inputEnable = true;
         $.post('/materia_num', {
             name: username,
             redbean: redbean_num,
             greenbean: greenbean_num,
             taro: taro_num
         });
-        num_1 = game.add.sprite(innerWidth * 11 / 20, innerHeight / 16, 'result_taro');
+        num_1 = game.add.sprite(innerWidth * 2 / 20, innerHeight / 16, 'result_taro');
         num_1.scale.setTo(scaleWidth, scaleHeight);
-        n_taro = game.add.text(innerWidth * 16 / 20, innerHeight * 5 / 32, ' /50', {
+        n_taro = game.add.text(innerWidth * 7 / 20, innerHeight * 5 / 32, ' /50', {
             fontSize: 0.0694 * innerWidth + 'px',
             fill: '#ffffff'
         });
-        c_taro = game.add.text(innerWidth * 14 / 20, innerHeight * 3 / 32, taro_num, {
+        c_taro = game.add.text(innerWidth * 5 / 20, innerHeight * 3 / 32, taro_num, {
             fontSize: 0.105 * innerWidth + 'px',
             fill: '#ffffff'
         });
 
-        num_2 = game.add.sprite(innerWidth * 11 / 20, innerHeight * 6 / 16, 'result_redbean');
+        num_2 = game.add.sprite(innerWidth * 2 / 20, innerHeight * 6 / 16, 'result_redbean');
         num_2.scale.setTo(scaleWidth, scaleHeight);
-        n_redbean = game.add.text(innerWidth * 16 / 20, innerHeight * 15 / 32, ' /50', {
+        n_redbean = game.add.text(innerWidth * 7 / 20, innerHeight * 15 / 32, ' /50', {
             fontSize: 0.0694 * innerWidth + 'px',
             fill: '#ffffff'
         });
-        c_redbean = game.add.text(innerWidth * 14 / 20, innerHeight * 13 / 32, redbean_num, {
+        c_redbean = game.add.text(innerWidth * 5 / 20, innerHeight * 13 / 32, redbean_num, {
             fontSize: 0.105 * innerWidth + 'px',
             fill: '#ffffff'
         });
 
-        num_3 = game.add.sprite(innerWidth * 11 / 20, innerHeight * 11 / 16, 'result_greenbean');
+        num_3 = game.add.sprite(innerWidth * 2 / 20, innerHeight * 11 / 16, 'result_greenbean');
         num_3.scale.setTo(scaleWidth, scaleHeight);
-        n_greenbean = game.add.text(innerWidth * 16 / 20, innerHeight * 25 / 32, ' /50', {
+        n_greenbean = game.add.text(innerWidth * 7 / 20, innerHeight * 25 / 32, ' /50', {
             fontSize: 0.0694 * innerWidth + 'px',
             fill: '#ffffff'
         });
-        c_greenbean = game.add.text(innerWidth * 14 / 20, innerHeight * 23 / 32, greenbean_num, {
+        c_greenbean = game.add.text(innerWidth * 5 / 20, innerHeight * 23 / 32, greenbean_num, {
             fontSize: 0.105 * innerWidth + 'px',
             fill: '#ffffff'
         });
 
 
-        //game.add.tween(num_2).to({y:0},2000,Phaser.Easing.Exponential.In,true,0,0,false);
-        //game.add.tween(c_redbean).to({y:0},2000,Phaser.Easing.Exponential.In,true,0,0,false);
-        //game.add.tween(n_redbean).to({y:0},2000,Phaser.Easing.Exponential.In,true,0,0,false);
-        //game.add.tween(num_3).to({y:0},2000,Phaser.Easing.Exponential.In,true,0,0,false);
-        //game.add.tween(c_greenbean).to({y:innerWidth*14/20},1500,Phaser.Easing.Exponential.In,true,0,0,false);
-        //game.add.tween(n_greenbean).to({y:innerWidth*16/20},2000,Phaser.Easing.Exponential.In,true,0,0,false);
 
 
         game.input.onDown.add(playState.checkforbt, self);
@@ -77,16 +68,21 @@ var playState = {
     checkforbt: function(event) {
         if (game.paused) {
             if (!al) {
-                var x1 = innerWidth * 2.75 / 10;
+                var x1 = innerWidth *10.5/20 ;
                 var y = innerHeight / 16;
-                var x2 = innerWidth / 10;
+                var x2 = innerWidth *13.5/20 ;
+                var x3 = innerWidth *16.5/20 ;
                 var w = con.width;
                 var h = con.height;
-                if (event.x > x1 && event.x < x1 + w && event.y > y && event.y < y + h) {
+                if (event.x > x2 && event.x < x2 + w && event.y > y && event.y < y + h) {
                     playState.backtomenu();
-                } else if (event.x > x2 && event.x < x2 + w && event.y > y && event.y < y + h) {
+                } else if (event.x > x1 && event.x < x1 + w && event.y > y && event.y < y + h) {
                     playState.backtogame();
+                } else if (event.x > x3 && event.x < x3 + w && event.y > y && event.y < y + h) {
+                    game.paused = false;
+                    game.state.start('menu');
                 }
+
             } else {
                 playState.killalt();
             }
@@ -95,6 +91,7 @@ var playState = {
         }
     },
     killalt: function() {
+        btm.alpha=1;
         con.alpha = 1;
         restart.alpha = 1;
         num_1.alpha = 1;
@@ -122,6 +119,7 @@ var playState = {
         c_redbean.destroy();
         n_greenbean.destroy();
         c_greenbean.destroy();
+        btm.destroy();
         background.alpha = 1;
         chairs.alpha = 1;
         desks.alpha = 1;
@@ -134,11 +132,8 @@ var playState = {
         //game.state.start('play');
     },
     backtomenu: function() {
-        if (taro_num == 50 && greenbean_num == 50 && redbean_num == 50) {
-            game.paused = false;
-            game.state.start('menu');
-        } else {
             con.alpha = 0.25;
+            btm.alpha=0.25;
             restart.alpha = 0.25;
             num_1.alpha = 0.25;
             num_2.alpha = 0.25;
@@ -154,7 +149,6 @@ var playState = {
             alter = game.add.sprite(game.world.centerX - Width * scaleWidth / 2, game.world.centerY - Height * scaleHeight / 2, 'alterbox');
             alter.scale.setTo(scaleWidth, scaleHeight);
             al = true;
-        }
 
     },
     hitbound: function(bound, obj) {
@@ -334,7 +328,7 @@ var playState = {
         game.input.keyboard.addKeyCapture([
             Phaser.Keyboard.UP
         ]);
-
+        playState.changeSpeed();
         if (innerHeight <= 414)
             jumpHeight = 7;
         playState.changeSpeed();
