@@ -19,10 +19,8 @@ var playState = {
         cat.alpha = 0.25;
         con = game.add.sprite(innerWidth * 2.75 / 10, innerHeight / 16, 'continue');
         con.scale.setTo(scaleWidth, scaleHeight);
-        //con.inputEnabled = true;
         restart = game.add.sprite(innerWidth / 10, innerHeight / 16, 'restart');
         restart.scale.setTo(scaleWidth, scaleHeight);
-        //restart.inputEnable = true;
         $.post('/materia_num', {
             name: username,
             redbean: redbean_num,
@@ -334,7 +332,7 @@ var playState = {
         game.input.keyboard.addKeyCapture([
             Phaser.Keyboard.UP
         ]);
-
+        playState.changeSpeed();
         if (innerHeight <= 414)
             jumpHeight = 7;
     },
