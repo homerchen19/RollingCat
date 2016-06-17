@@ -309,12 +309,10 @@ var playState = {
         taros = game.add.group();
         taros.enableBody = true;
         //game.physics.arcade.enable(taros);
-        //for (var i = 0 ; i < 2 ; i++){
         redbean = redbeans.create(2800, 0, 'redbean');
         redbean.scale.setTo(scaleWidth, scaleHeight);
         redbean.body.velocity.x = redbean_v;
         redbean.body.allowGravity = false;
-        //}
 
         greenbean = greenbeans.create(2800 * 2, 0, 'greenbean');
         greenbean.scale.setTo(scaleWidth, scaleHeight);
@@ -349,37 +347,28 @@ var playState = {
         if (redbeans.total == 0 && greenbeans.total == 0 && taros.total == 0 && desks.total == 0 && chairs.total == 0) {
             playState.createElement(5);
         }
-        //偵測有沒有碰到地板
-        var onTheGround = cat.body.blocked.down;
 
+        //偵測有沒有碰到地板
+        onTheGround = cat.body.blocked.down;
         if (onTheGround) {
             //限定只能跳兩次
             jumps = 2;
         }
 
-        // Jump!
-        if (jumps > 0 && playState.upInputIsActive(5)) {
+        game.input.onDown.add(this.jump_down, this, 0);
+        game.input.onDown.add(this.jump_up, this, 0);
+    },
+    jump_down: function() {
+        if(jumps > 0){
             cat.body.velocity.y = -innerHeight * jumpHeight * scaleHeight;
             jumping = true;
         }
-
-        if (jumping && playState.upInputReleased()) {
+    },
+    jump_up: function() {
+        if(jumping){
             jumps--;
             jumping = false;
         }
-    },
-    upInputIsActive: function(duration) {
-        var isActive = false;
-        isActive = game.input.activePointer.justPressed(duration + 1000 / 60);
-        return isActive;
-    },
-    upInputReleased: function() {
-        var released = false;
-
-        released = game.input.keyboard.upDuration(Phaser.Keyboard.UP);
-        released |= game.input.activePointer.justReleased();
-
-        return released;
     },
     changeSpeed: function() {
         var sum = taro_num + redbean_num + greenbean_num;
