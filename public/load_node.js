@@ -35,6 +35,7 @@ var loadState = {
         game.load.image('back_to_menu', 'assets/back_to_menu.png');
         game.load.image('up_arrow', 'assets/up_arrow.png');
         game.load.image('down_arrow', 'assets/down_arrow.png');
+        game.load.image('btm', 'assets/btm.png');
     },
     create:function(){
       game.state.start('login');
