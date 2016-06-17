@@ -26,6 +26,7 @@ var loadState = {
         game.load.image('sidemenu_4', 'assets/sidemenu_4.png');
         game.load.image('sidemenu_5', 'assets/sidemenu_5.png');
         game.load.image('login_back', 'assets/login_back.png');
+        game.load.image('back_contract', 'assets/back_contract.jpg');
         game.load.image('title', 'assets/title.png');
         game.load.image('map', 'assets/map.jpg');
         game.load.image('alterbox', 'assets/alterbox.png');

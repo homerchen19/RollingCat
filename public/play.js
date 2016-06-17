@@ -231,8 +231,11 @@ var playState = {
         // background
         game.physics.arcade.gravity.y = 1500; //地圖重力
 
-        background = game.add.tileSprite(0, 0, 1960 * 3, 1080, 'background');
-        background.scale.setTo(scaleWidth, scaleHeight);
+        //background = game.add.tileSprite(0, 0, 1960 * 3, 1080, 'background');
+        //background.scale.setTo(scaleWidth, scaleHeight);
+        b1 = game.add.tileSprite(0, 0, 2400 , 450, 'b1');
+        b1.tileScale.y =  1;
+        b1.tileScale.x =  1;
         bound = game.add.sprite(-innerWidth - 300, 0, 'login_back');
         bound.scale.setTo(scaleWidth, scaleHeight);
         game.physics.arcade.enable(bound);
@@ -328,6 +331,8 @@ var playState = {
             Phaser.Keyboard.UP
         ]);
         playState.changeSpeed();
+        //b1.tilePosition.x += -innerWidth/3 * scaleWidth * levelSpeed;
+        //b2.tilePosition.x += -innerWidth/3 * scaleWidth * levelSpeed;
         if (innerHeight <= 414)
             jumpHeight = 7;
         playState.changeSpeed();
@@ -342,7 +347,8 @@ var playState = {
         game.physics.arcade.overlap(cat, chair_2s, playState.die, null, this);
         game.physics.arcade.overlap(bound, [redbeans, greenbeans, taros, desks, chairs], playState.hitbound, null, this);
         game.physics.arcade.overlap(cat, chairs, playState.die, null, this);
-        background.tilePosition.x += -20 * scaleWidth * levelSpeed;
+        b1.tilePosition.x += -20 * scaleWidth * levelSpeed;
+        //b2.tilePosition.x += -20 * scaleWidth * levelSpeed;
         cat.body.velocity.x = 0;
         cat.angle += 10; //旋轉
 
