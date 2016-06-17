@@ -193,7 +193,7 @@ var playState = {
         for (var i = 0; i < num; i++) {
             var x = game.rnd.integerInRange(1, 6);
 
-            if (x == 1) {
+            if (x == 1 && redbean_num < 50) {
                 max_x += half_innerWidth + game.rnd.integerInRange(redbean.width, half_innerWidth);
                 redbean = redbeans.create(max_x, game.rnd.integerInRange(0, innerHeight - redbean.height), 'redbean');
                 redbean.scale.setTo(scaleWidth, scaleHeight);
@@ -211,13 +211,13 @@ var playState = {
                 chair.scale.setTo(scaleWidth, scaleHeight);
                 chair.body.velocity.x = chair_v * levelSpeed;
                 chair.body.allowGravity = false;
-            } else if (x == 4) {
+            } else if (x == 4 && greenbean_num < 50) {
                 max_x += half_innerWidth + game.rnd.integerInRange(greenbean.width, half_innerWidth)
                 greenbean = greenbeans.create(max_x, game.rnd.integerInRange(0, innerHeight - greenbean.height), 'greenbean');
                 greenbean.scale.setTo(scaleWidth, scaleHeight);
                 greenbean.body.velocity.x = greenbean_v * levelSpeed;
                 greenbean.body.allowGravity = false;
-            } else if (x == 5) {
+            } else if (x == 5 && taro_num < 50) {
                 max_x += half_innerWidth + game.rnd.integerInRange(taro.width, half_innerWidth)
                 taro = taros.create(max_x, game.rnd.integerInRange(0, innerHeight - taro.height), 'taro');
                 taro.scale.setTo(scaleWidth, scaleHeight);
@@ -337,6 +337,7 @@ var playState = {
 
         if (innerHeight <= 414)
             jumpHeight = 7;
+        playState.changeSpeed();
     },
     update: function() {
         //game.physics.arcade.collide(cat, stones);

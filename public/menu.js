@@ -33,35 +33,35 @@ var menuState = {
         option.events.onInputDown.add(this.jumpoption, this);
         game.input.onDown.add(menuState.contract, self);
     },
-    contract:function(event){
-       if(option_d){
-         var w = sidemenu_1.width;
-         if(event.x > w){
-            //CONTRACT
-            game.add.tween(option).to({
-                y: 0
-            }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
-            game.add.tween(sidemenu_1).to({
-                x: -w
-            }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
-            game.add.tween(sidemenu_2).to({
-                x: -w
-            }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
-            game.add.tween(sidemenu_3).to({
-                x: -w
-            }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
-            game.add.tween(sidemenu_4).to({
-                x: -w
-            }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
-            game.add.tween(sidemenu_5).to({
-                x: -w
-            }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
-            game.add.tween(sidemenu_6).to({
-                x: -w
-            }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
-            option_d = false;
-         }
-       }
+    contract: function(event) {
+        if (option_d) {
+            var w = sidemenu_1.width;
+            if (event.x > w) {
+                //CONTRACT
+                game.add.tween(option).to({
+                    y: 0
+                }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
+                game.add.tween(sidemenu_1).to({
+                    x: -w
+                }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
+                game.add.tween(sidemenu_2).to({
+                    x: -w
+                }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
+                game.add.tween(sidemenu_3).to({
+                    x: -w
+                }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
+                game.add.tween(sidemenu_4).to({
+                    x: -w
+                }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
+                game.add.tween(sidemenu_5).to({
+                    x: -w
+                }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
+                game.add.tween(sidemenu_6).to({
+                    x: -w
+                }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
+                option_d = false;
+            }
+        }
     },
     start: function() {
         game.state.start('play');
@@ -90,8 +90,8 @@ var menuState = {
                 x: 0
             }, 2000, Phaser.Easing.Cubic.Out, true, 0, 0, false);
             option_d = true;
-          }    
-        },
+        }
+    },
     go_to_food: function() {
         game.state.start('food');
     }
