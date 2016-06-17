@@ -20,7 +20,7 @@
 	var chair_v = -1400 * scaleWidth;
 	var mylatesttap;
 	var jumps = 2,
-		jumpHeight = 3;
+	    jumpHeight = 3;
 	var al = false,
 	    jumping = false;
 	var option_d = false;
@@ -28,7 +28,7 @@
 	var game = new Phaser.Game(innerWidth, innerHeight, Phaser.AUTO, '');
 	var randomXPosition = game.rnd.integerInRange(innerWidth, innerWidth * 1.5);
 	var current_page = 1;
-  var finalnum = 50;
+	var finalnum = 50;
 
 	game.state.add('boot', bootState);
 	//game.state.add('load_node', loadState);

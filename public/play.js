@@ -1,77 +1,76 @@
 var playState = {
     die: function(cat, obj) {
-      if(taro_num == finalnum && redbean_num ==finalnum && greenbean_num == finalnum){
-         game.state.start('loadendstory');
-      }
-      else{
-        obj.kill();
-        game.paused = true;
-        background.alpha = 0.25;
-        chairs.alpha = 0.25;
-        desks.alpha = 0.25;
-        redbeans.alpha = 0.25;
-        greenbeans.alpha = 0.25;
-        taros.alpha = 0.25;
-        chair_2s.alpha = 0.25;
-        cat.alpha = 0.25;
-        btm = game.add.sprite(innerWidth * 16.5 / 20, innerHeight / 16, 'btm');
-        btm.scale.setTo(scaleWidth, scaleHeight);
-        con = game.add.sprite(innerWidth * 13.5 / 20, innerHeight / 16, 'continue');
-        con.scale.setTo(scaleWidth, scaleHeight);
-        restart = game.add.sprite(innerWidth*10.5 / 20, innerHeight / 16, 'restart');
-        restart.scale.setTo(scaleWidth, scaleHeight);
-        $.post('/materia_num', {
-            name: username,
-            redbean: redbean_num,
-            greenbean: greenbean_num,
-            taro: taro_num
-        });
-        num_1 = game.add.sprite(innerWidth * 2 / 20, innerHeight / 16, 'result_taro');
-        num_1.scale.setTo(scaleWidth, scaleHeight);
-        n_taro = game.add.text(innerWidth * 7 / 20, innerHeight * 5 / 32, ' /50', {
-            fontSize: 0.0694 * innerWidth + 'px',
-            fill: '#ffffff'
-        });
-        c_taro = game.add.text(innerWidth * 5 / 20, innerHeight * 3 / 32, taro_num, {
-            fontSize: 0.105 * innerWidth + 'px',
-            fill: '#ffffff'
-        });
+        if (taro_num == finalnum && redbean_num == finalnum && greenbean_num == finalnum) {
+            game.state.start('loadendstory');
+        } else {
+            obj.kill();
+            game.paused = true;
+            background.alpha = 0.25;
+            chairs.alpha = 0.25;
+            desks.alpha = 0.25;
+            redbeans.alpha = 0.25;
+            greenbeans.alpha = 0.25;
+            taros.alpha = 0.25;
+            chair_2s.alpha = 0.25;
+            cat.alpha = 0.25;
+            btm = game.add.sprite(innerWidth * 16.5 / 20, innerHeight / 16, 'btm');
+            btm.scale.setTo(scaleWidth, scaleHeight);
+            con = game.add.sprite(innerWidth * 13.5 / 20, innerHeight / 16, 'continue');
+            con.scale.setTo(scaleWidth, scaleHeight);
+            restart = game.add.sprite(innerWidth * 10.5 / 20, innerHeight / 16, 'restart');
+            restart.scale.setTo(scaleWidth, scaleHeight);
+            $.post('/materia_num', {
+                name: username,
+                redbean: redbean_num,
+                greenbean: greenbean_num,
+                taro: taro_num
+            });
+            num_1 = game.add.sprite(innerWidth * 2 / 20, innerHeight / 16, 'result_taro');
+            num_1.scale.setTo(scaleWidth, scaleHeight);
+            n_taro = game.add.text(innerWidth * 7 / 20, innerHeight * 5 / 32, ' /50', {
+                fontSize: 0.0694 * innerWidth + 'px',
+                fill: '#ffffff'
+            });
+            c_taro = game.add.text(innerWidth * 5 / 20, innerHeight * 3 / 32, taro_num, {
+                fontSize: 0.105 * innerWidth + 'px',
+                fill: '#ffffff'
+            });
 
-        num_2 = game.add.sprite(innerWidth * 2 / 20, innerHeight * 6 / 16, 'result_redbean');
-        num_2.scale.setTo(scaleWidth, scaleHeight);
-        n_redbean = game.add.text(innerWidth * 7 / 20, innerHeight * 15 / 32, ' /50', {
-            fontSize: 0.0694 * innerWidth + 'px',
-            fill: '#ffffff'
-        });
-        c_redbean = game.add.text(innerWidth * 5 / 20, innerHeight * 13 / 32, redbean_num, {
-            fontSize: 0.105 * innerWidth + 'px',
-            fill: '#ffffff'
-        });
+            num_2 = game.add.sprite(innerWidth * 2 / 20, innerHeight * 6 / 16, 'result_redbean');
+            num_2.scale.setTo(scaleWidth, scaleHeight);
+            n_redbean = game.add.text(innerWidth * 7 / 20, innerHeight * 15 / 32, ' /50', {
+                fontSize: 0.0694 * innerWidth + 'px',
+                fill: '#ffffff'
+            });
+            c_redbean = game.add.text(innerWidth * 5 / 20, innerHeight * 13 / 32, redbean_num, {
+                fontSize: 0.105 * innerWidth + 'px',
+                fill: '#ffffff'
+            });
 
-        num_3 = game.add.sprite(innerWidth * 2 / 20, innerHeight * 11 / 16, 'result_greenbean');
-        num_3.scale.setTo(scaleWidth, scaleHeight);
-        n_greenbean = game.add.text(innerWidth * 7 / 20, innerHeight * 25 / 32, ' /50', {
-            fontSize: 0.0694 * innerWidth + 'px',
-            fill: '#ffffff'
-        });
-        c_greenbean = game.add.text(innerWidth * 5 / 20, innerHeight * 23 / 32, greenbean_num, {
-            fontSize: 0.105 * innerWidth + 'px',
-            fill: '#ffffff'
-        });
-
+            num_3 = game.add.sprite(innerWidth * 2 / 20, innerHeight * 11 / 16, 'result_greenbean');
+            num_3.scale.setTo(scaleWidth, scaleHeight);
+            n_greenbean = game.add.text(innerWidth * 7 / 20, innerHeight * 25 / 32, ' /50', {
+                fontSize: 0.0694 * innerWidth + 'px',
+                fill: '#ffffff'
+            });
+            c_greenbean = game.add.text(innerWidth * 5 / 20, innerHeight * 23 / 32, greenbean_num, {
+                fontSize: 0.105 * innerWidth + 'px',
+                fill: '#ffffff'
+            });
 
 
 
-        game.input.onDown.add(playState.checkforbt, self);
-      }
+
+            game.input.onDown.add(playState.checkforbt, self);
+        }
     },
     checkforbt: function(event) {
         if (game.paused) {
             if (!al) {
-                var x1 = innerWidth *10.5/20 ;
+                var x1 = innerWidth * 10.5 / 20;
                 var y = innerHeight / 16;
-                var x2 = innerWidth *13.5/20 ;
-                var x3 = innerWidth *16.5/20 ;
+                var x2 = innerWidth * 13.5 / 20;
+                var x3 = innerWidth * 16.5 / 20;
                 var w = con.width;
                 var h = con.height;
                 if (event.x > x2 && event.x < x2 + w && event.y > y && event.y < y + h) {
@@ -91,7 +90,7 @@ var playState = {
         }
     },
     killalt: function() {
-        btm.alpha=1;
+        btm.alpha = 1;
         con.alpha = 1;
         restart.alpha = 1;
         num_1.alpha = 1;
@@ -132,23 +131,23 @@ var playState = {
         //game.state.start('play');
     },
     backtomenu: function() {
-            con.alpha = 0.25;
-            btm.alpha=0.25;
-            restart.alpha = 0.25;
-            num_1.alpha = 0.25;
-            num_2.alpha = 0.25;
-            num_3.alpha = 0.25;
-            n_greenbean.alpha = 0.25;
-            c_greenbean.alpha = 0.25;
-            n_redbean.alpha = 0.25;
-            c_redbean.alpha = 0.25;
-            n_taro.alpha = 0.25;
-            c_taro.alpha = 0.25;
-            var Height = game.cache.getImage("alterbox").height;
-            var Width = game.cache.getImage("alterbox").width;
-            alter = game.add.sprite(game.world.centerX - Width * scaleWidth / 2, game.world.centerY - Height * scaleHeight / 2, 'alterbox');
-            alter.scale.setTo(scaleWidth, scaleHeight);
-            al = true;
+        con.alpha = 0.25;
+        btm.alpha = 0.25;
+        restart.alpha = 0.25;
+        num_1.alpha = 0.25;
+        num_2.alpha = 0.25;
+        num_3.alpha = 0.25;
+        n_greenbean.alpha = 0.25;
+        c_greenbean.alpha = 0.25;
+        n_redbean.alpha = 0.25;
+        c_redbean.alpha = 0.25;
+        n_taro.alpha = 0.25;
+        c_taro.alpha = 0.25;
+        var Height = game.cache.getImage("alterbox").height;
+        var Width = game.cache.getImage("alterbox").width;
+        alter = game.add.sprite(game.world.centerX - Width * scaleWidth / 2, game.world.centerY - Height * scaleHeight / 2, 'alterbox');
+        alter.scale.setTo(scaleWidth, scaleHeight);
+        al = true;
 
     },
     hitbound: function(bound, obj) {
@@ -385,21 +384,21 @@ var playState = {
     changeSpeed: function() {
         var sum = taro_num + redbean_num + greenbean_num;
         if (sum > 5 && sum <= 10)
-            levelSpeed = 1.2;
+            levelSpeed = 1.1;
         else if (sum > 10 && sum <= 15)
-            levelSpeed = 1.4;
+            levelSpeed = 1.3;
         else if (sum > 15 && sum <= 25)
-            levelSpeed = 1.6;
+            levelSpeed = 1.5;
         else if (sum > 25 && sum <= 35)
-            levelSpeed = 1.8;
+            levelSpeed = 1.6;
         else if (sum > 35 && sum <= 50)
-            levelSpeed = 2;
+            levelSpeed = 1.8;
         else if (sum > 50 && sum <= 75)
-            levelSpeed = 2.3;
+            levelSpeed = 2;
         else if (sum > 75 && sum <= 100)
-            levelSpeed = 2.5;
+            levelSpeed = 2.2;
         else if (sum > 100)
-            levelSpeed = 3;
+            levelSpeed = 2.5;
 
         redbean.body.velocity.x = redbean_v * levelSpeed;
         greenbean.body.velocity.x = redbean_v * levelSpeed;

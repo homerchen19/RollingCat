@@ -34,6 +34,7 @@ var loadState = {
         game.load.image('sidemenu_4', './public/assets/sidemenu_4.png');
         game.load.image('sidemenu_5', './public/assets/sidemenu_5.png');
         game.load.image('login_back', './public/assets/login_back.png');
+        game.load.image('btm', './public/assets/btm.png');
     },
     create: function() {
         //game.state.start('login');
