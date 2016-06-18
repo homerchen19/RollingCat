@@ -31,8 +31,8 @@
 	var finalnum = 50;
 
 	game.state.add('boot', bootState);
-	//game.state.add('load_node', loadState);
-	game.state.add('load', loadState);
+	game.state.add('load_node', loadState);
+	//game.state.add('load', loadState);
 	game.state.add('login', loginState);
 	game.state.add('loadstory', loadstoryState);
 	game.state.add('story', storyState);

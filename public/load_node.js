@@ -39,7 +39,7 @@ var loadState = {
         game.load.image('btm', 'assets/btm.png');
     },
     create: function() {
-        //game.state.start('login');
-        game.state.start('menu');
+        game.state.start('login');
+//        game.state.start('menu');
     }
 };
