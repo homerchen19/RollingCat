@@ -15,7 +15,7 @@ app.post('/userdata', function(req, res) {
     //console.log(req.body);
     var users = JSON.parse(fs.readFileSync('./register.json', 'utf8'));
     var count = 0;
-    //fs.readFileSync('./register.json','utf8');
+   // fs.readFileSync('./register.json','utf8');
     for (var j = 0; j < users.length; j++) {
         if (req.body.name === users[j].name) {
             res.send(users[j].materia);

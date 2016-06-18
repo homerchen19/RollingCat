@@ -5,7 +5,7 @@ var playState = {
         } else {
             obj.kill();
             game.paused = true;
-            background.alpha = 0.25;
+            b1.alpha = 0.25;
             chairs.alpha = 0.25;
             desks.alpha = 0.25;
             redbeans.alpha = 0.25;
@@ -15,9 +15,9 @@ var playState = {
             cat.alpha = 0.25;
             btm = game.add.sprite(innerWidth * 16.5 / 20, innerHeight / 16, 'btm');
             btm.scale.setTo(scaleWidth, scaleHeight);
-            con = game.add.sprite(innerWidth * 13.5 / 20, innerHeight / 16, 'continue');
+            con = game.add.sprite(innerWidth * 13.25 / 20, innerHeight / 16, 'continue');
             con.scale.setTo(scaleWidth, scaleHeight);
-            restart = game.add.sprite(innerWidth * 10.5 / 20, innerHeight / 16, 'restart');
+            restart = game.add.sprite(innerWidth * 10 / 20, innerHeight / 16, 'restart');
             restart.scale.setTo(scaleWidth, scaleHeight);
             $.post('/materia_num', {
                 name: username,
@@ -67,9 +67,9 @@ var playState = {
     checkforbt: function(event) {
         if (game.paused) {
             if (!al) {
-                var x1 = innerWidth * 10.5 / 20;
+                var x1 = innerWidth * 10 / 20;
                 var y = innerHeight / 16;
-                var x2 = innerWidth * 13.5 / 20;
+                var x2 = innerWidth * 13.25 / 20;
                 var x3 = innerWidth * 16.5 / 20;
                 var w = con.width;
                 var h = con.height;
@@ -119,7 +119,7 @@ var playState = {
         n_greenbean.destroy();
         c_greenbean.destroy();
         btm.destroy();
-        background.alpha = 1;
+        b1.alpha = 1;
         chairs.alpha = 1;
         desks.alpha = 1;
         redbeans.alpha = 1;
@@ -233,9 +233,9 @@ var playState = {
 
         //background = game.add.tileSprite(0, 0, 1960 * 3, 1080, 'background');
         //background.scale.setTo(scaleWidth, scaleHeight);
-        b1 = game.add.tileSprite(0, 0, 2400 , 450, 'b1');
-        b1.tileScale.y =  1;
-        b1.tileScale.x =  1;
+        b1 = game.add.tileSprite(0, 0, 1920, 1080, 'back_contract');
+        b1.tileScale.y =  2.4*scaleHeight;
+        b1.tileScale.x =  2.4*scaleWidth;
         bound = game.add.sprite(-innerWidth - 300, 0, 'login_back');
         bound.scale.setTo(scaleWidth, scaleHeight);
         game.physics.arcade.enable(bound);
