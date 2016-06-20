@@ -29,7 +29,7 @@ var playState = {
             });
             num_1 = game.add.sprite(innerWidth * 2 / 20, innerHeight / 16, 'result_taro');
             num_1.scale.setTo(scaleWidth, scaleHeight);
-            n_taro = game.add.text(innerWidth * 7 / 20, innerHeight * 5 / 32, ' /50', {
+            n_taro = game.add.text(innerWidth * 7 / 20, innerHeight * 5 / 32, ' /20', {
                 fontSize: 0.0694 * innerWidth + 'px',
                 fill: '#ffffff'
             });
@@ -40,7 +40,7 @@ var playState = {
 
             num_2 = game.add.sprite(innerWidth * 2 / 20, innerHeight * 6 / 16, 'result_redbean');
             num_2.scale.setTo(scaleWidth, scaleHeight);
-            n_redbean = game.add.text(innerWidth * 7 / 20, innerHeight * 15 / 32, ' /50', {
+            n_redbean = game.add.text(innerWidth * 7 / 20, innerHeight * 15 / 32, ' /20', {
                 fontSize: 0.0694 * innerWidth + 'px',
                 fill: '#ffffff'
             });
@@ -51,7 +51,7 @@ var playState = {
 
             num_3 = game.add.sprite(innerWidth * 2 / 20, innerHeight * 11 / 16, 'result_greenbean');
             num_3.scale.setTo(scaleWidth, scaleHeight);
-            n_greenbean = game.add.text(innerWidth * 7 / 20, innerHeight * 25 / 32, ' /50', {
+            n_greenbean = game.add.text(innerWidth * 7 / 20, innerHeight * 25 / 32, ' /20', {
                 fontSize: 0.0694 * innerWidth + 'px',
                 fill: '#ffffff'
             });
