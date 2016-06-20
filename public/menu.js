@@ -18,6 +18,8 @@ var menuState = {
         sidemenu_2.scale.setTo(scaleWidth, scaleHeight);
         sidemenu_3 = game.add.sprite(-Width_3, sidemenu_1.height * 2, 'sidemenu_3');
         sidemenu_3.scale.setTo(scaleWidth, scaleHeight);
+        sidemenu_3.inputEnabled = true;
+        sidemenu_3.events.onInputDown.add(this.go_to_loadstory, this);
         sidemenu_4 = game.add.sprite(-Width_3, sidemenu_1.height * 3, 'sidemenu_4');
         sidemenu_4.scale.setTo(scaleWidth, scaleHeight);
         sidemenu_4.inputEnabled = true;
@@ -94,6 +96,9 @@ var menuState = {
     },
     go_to_food: function() {
         game.state.start('food');
+    },
+    go_to_loadstory: function() {
+        game.state.start('loadstory');
     }
 
 };

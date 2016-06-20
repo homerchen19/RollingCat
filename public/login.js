@@ -47,10 +47,10 @@ var loginState = {
                     FB.api('/me', function(res) {
                         username = res.name;
                         $.post('/userdata', res, function(data) {
-                            console.log('Succeed!e');
-                            redbean_num = data.redbean;
-                            greenbean_num = data.greenbean;
-                            taro_num = data.taro;
+                            redbean_num = parseInt(data.redbean);
+                            greenbean_num = parseInt(data.greenbean);
+                            taro_num = parseInt(data.taro);
+                            die_num = parseInt(data.die);
                             game.state.start('loadstory');
                         });
                     });
