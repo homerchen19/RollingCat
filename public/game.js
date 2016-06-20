@@ -29,7 +29,7 @@
 	var randomXPosition = game.rnd.integerInRange(innerWidth, innerWidth * 1.5);
 	var current_page = 1;
 	var finalnum = 50;
-
+  var die_num = 0;
 	game.state.add('boot', bootState);
 	game.state.add('load_node', loadState);
 	//game.state.add('load', loadState);

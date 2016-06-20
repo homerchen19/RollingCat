@@ -33,6 +33,7 @@ var loginState = {
                     redbean_num = parseInt(data.redbean);
                     greenbean_num = parseInt(data.greenbean);
                     taro_num = parseInt(data.taro);
+                    die_num = parseInt(data.die);
                     game.state.start('menu');
                 });
             });

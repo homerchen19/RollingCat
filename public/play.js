@@ -1,5 +1,6 @@
 var playState = {
     die: function(cat, obj) {
+        die_num=die_num+1;
         if (taro_num == finalnum && redbean_num == finalnum && greenbean_num == finalnum) {
             game.state.start('loadendstory');
         } else {
@@ -23,7 +24,8 @@ var playState = {
                 name: username,
                 redbean: redbean_num,
                 greenbean: greenbean_num,
-                taro: taro_num
+                taro: taro_num,
+                die:die_num
             });
             num_1 = game.add.sprite(innerWidth * 2 / 20, innerHeight / 16, 'result_taro');
             num_1.scale.setTo(scaleWidth, scaleHeight);

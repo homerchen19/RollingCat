@@ -30,7 +30,8 @@ app.post('/userdata', function(req, res) {
             materia: {
                 redbean: 0,
                 greenbean: 0,
-                taro: 0
+                taro: 0,
+                die:0
             }
         };
         users.push(user);
@@ -38,7 +39,8 @@ app.post('/userdata', function(req, res) {
         res.send({
             redbean: 0,
             greenbean: 0,
-            taro: 0
+            taro: 0,
+            die:0
         });
     }
 });
@@ -49,6 +51,7 @@ app.post('/materia_num', function(req, res) {
             users[j].materia.redbean = req.body.redbean;
             users[j].materia.greenbean = req.body.greenbean;
             users[j].materia.taro = req.body.taro;
+            users[j].materia.die = req.body.die;
             fs.writeFile('./register.json', JSON.stringify(users, null, '\t'), 'utf8', function(err) {
                 if (err) console.log(err);
                 else {
