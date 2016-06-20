@@ -1,8 +1,8 @@
-	const innerWidth = window.innerWidth;
-	const innerHeight = window.innerHeight;
-	const gameRatio = innerWidth / innerHeight;
-	const scaleWidth = innerWidth / 1920;
-	const scaleHeight = innerHeight / 1080;
+	var innerWidth = window.innerWidth;
+	var innerHeight = window.innerHeight;
+	var gameRatio = innerWidth / innerHeight;
+	var scaleWidth = innerWidth / 1920;
+	var scaleHeight = innerHeight / 1080;
 	var redbeans, redbean;
 	var greenbeans, greenbean;
 	var taros, taro;
