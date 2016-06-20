@@ -1,8 +1,8 @@
 var playState = {
     die: function(cat, obj) {
-        die_num=die_num+1;
+        die_num = die_num + 1;
         if (taro_num == finalnum && redbean_num == finalnum && greenbean_num == finalnum) {
-            game.state.start('loadendstory');
+        //    game.state.start('loadendstory');
         } else {
             obj.kill();
             game.paused = true;
@@ -25,7 +25,7 @@ var playState = {
                 redbean: redbean_num,
                 greenbean: greenbean_num,
                 taro: taro_num,
-                die:die_num
+                die: die_num
             });
             num_1 = game.add.sprite(innerWidth * 2 / 20, innerHeight / 16, 'result_taro');
             num_1.scale.setTo(scaleWidth, scaleHeight);
@@ -184,7 +184,7 @@ var playState = {
     },
     createElement: function(num) {
         var max_x = innerWidth;
-        const half_innerWidth = innerWidth / 2;
+        var half_innerWidth = innerWidth / 2;
         for (var i = 0; i < num; i++) {
             var x = game.rnd.integerInRange(1, 6);
 
@@ -225,7 +225,7 @@ var playState = {
                 chair_2.body.velocity.x = chair_v * levelSpeed;
                 chair_2.body.allowGravity = false;
             }
-            //console.log(max_x);
+            console.log(max_x);
         }
     },
 
@@ -236,8 +236,8 @@ var playState = {
         //background = game.add.tileSprite(0, 0, 1960 * 3, 1080, 'background');
         //background.scale.setTo(scaleWidth, scaleHeight);
         b1 = game.add.tileSprite(0, 0, 1920, 1080, 'back_contract');
-        b1.tileScale.y =  2.4*scaleHeight;
-        b1.tileScale.x =  2.4*scaleWidth;
+        b1.tileScale.y = 2.4 * scaleHeight;
+        b1.tileScale.x = 2.4 * scaleWidth;
         bound = game.add.sprite(-innerWidth - 300, 0, 'login_back');
         bound.scale.setTo(scaleWidth, scaleHeight);
         game.physics.arcade.enable(bound);
@@ -345,14 +345,15 @@ var playState = {
 
         game.physics.arcade.overlap(cat, desks, playState.die, null, this);
         game.physics.arcade.overlap(cat, chair_2s, playState.die, null, this);
-        game.physics.arcade.overlap(bound, [redbeans, greenbeans, taros, desks, chairs], playState.hitbound, null, this);
         game.physics.arcade.overlap(cat, chairs, playState.die, null, this);
+        game.physics.arcade.overlap(bound, [redbeans, greenbeans, taros, desks, chairs, chair_2s], playState.hitbound, null, this);
+
         b1.tilePosition.x += -20 * scaleWidth * levelSpeed;
         //b2.tilePosition.x += -20 * scaleWidth * levelSpeed;
         cat.body.velocity.x = 0;
         cat.angle += 10; //旋轉
 
-        if (redbeans.total == 0 && greenbeans.total == 0 && taros.total == 0 && desks.total == 0 && chairs.total == 0) {
+        if (redbeans.total == 0 && greenbeans.total == 0 && taros.total == 0 && desks.total == 0 && chairs.total == 0 && chair_2s.total == 0) {
             playState.createElement(5);
         }
 
@@ -367,13 +368,13 @@ var playState = {
         game.input.onDown.add(this.jump_up, this, 0);
     },
     jump_down: function() {
-        if(jumps > 0){
+        if (jumps > 0) {
             cat.body.velocity.y = -innerHeight * jumpHeight * scaleHeight;
             jumping = true;
         }
     },
     jump_up: function() {
-        if(jumping){
+        if (jumping) {
             jumps--;
             jumping = false;
         }
@@ -383,19 +384,19 @@ var playState = {
         if (sum > 5 && sum <= 10)
             levelSpeed = 1.1;
         else if (sum > 10 && sum <= 15)
-            levelSpeed = 1.3;
+            levelSpeed = 1.15;
         else if (sum > 15 && sum <= 25)
-            levelSpeed = 1.5;
+            levelSpeed = 1.2;
         else if (sum > 25 && sum <= 35)
-            levelSpeed = 1.6;
+            levelSpeed = 1.3;
         else if (sum > 35 && sum <= 50)
-            levelSpeed = 1.8;
+            levelSpeed = 1.4;
         else if (sum > 50 && sum <= 75)
-            levelSpeed = 2;
+            levelSpeed = 1.6;
         else if (sum > 75 && sum <= 100)
-            levelSpeed = 2.2;
+            levelSpeed = 1.7;
         else if (sum > 100)
-            levelSpeed = 2.5;
+            levelSpeed = 1.9;
 
         redbean.body.velocity.x = redbean_v * levelSpeed;
         greenbean.body.velocity.x = redbean_v * levelSpeed;
