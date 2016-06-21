@@ -1,12 +1,12 @@
 var playState = {
     die: function(cat, obj) {
         music_3.pause();
+        music_4.play();
         die_num = die_num + 1;
         if (taro_num == finalnum && redbean_num == finalnum && greenbean_num == finalnum) {
             game.state.start('loadendstory');
             music_3.destroy();
         } else {
-            music_4.play();
             obj.kill();
             game.paused = true;
             b1.alpha = 0.25;
@@ -134,8 +134,8 @@ var playState = {
         taros.alpha = 1;
         chair_2s.alpha = 1;
         cat.alpha = 1;
-        music_4.resume();
-        music_3.destroy();
+        music_3.resume();
+        music_4.destroy();
         game.paused = false;
 
         //game.state.start('play');
@@ -233,7 +233,7 @@ var playState = {
                 chair_2.body.velocity.x = chair_v * levelSpeed;
                 chair_2.body.allowGravity = false;
             }
-            console.log(max_x);
+            //console.log(max_x);
         }
     },
 
