@@ -25,6 +25,9 @@ var overState = {
         estoryimg1.scale.setTo(scaleWidth, scaleHeight);
         estoryimg1.inputEnabled = true;
         estoryimg1.events.onInputDown.add(this.start, this);
+        music_2 = game.add.audio('m_story');
+        music_2.loop = true;
+        music_2.play();
     },
     start: function(obj) {
         game.add.tween(obj).to({
@@ -34,6 +37,7 @@ var overState = {
             obj.destroy();
         }, 1000);
         if (obj.key == 'e6') {
+            music_2.destroy();
             game.state.start('menu');
         }
     }

@@ -38,6 +38,7 @@
 	game.state.add('story', storyState);
 	game.state.add('menu', menuState);
 	game.state.add('food', foodState);
+	game.state.add('method', methodState);
 	game.state.add('play', playState);
 	game.state.add('loadendstory', loadendstoryState);
 	game.state.add('over', overState);

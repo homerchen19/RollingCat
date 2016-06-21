@@ -4,6 +4,8 @@ var loadState = {
             font: '30px Courier',
             fill: '#ffffff'
         });
+        game.load.audio('m_die','assets/dead.mp3');
+        game.load.audio('m_bgm','assets/bgm.mp3');
         game.load.image('background', 'assets/background_2.jpg');
         game.load.image('cat', 'assets/cat_test.png');
         game.load.image('redbean', 'assets/redbean.png');
@@ -34,6 +36,8 @@ var loadState = {
         game.load.image('up_arrow', 'assets/up_arrow.png');
         game.load.image('down_arrow', 'assets/down_arrow.png');
         game.load.image('btm', 'assets/btm.png');
+        game.load.image('method_1', 'assets/method_1.jpg');
+        game.load.image('method_2', 'assets/method_2.jpg');
     },
     create: function() {
       //if(!window.location.href.match(/story/))

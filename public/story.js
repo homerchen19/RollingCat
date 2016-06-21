@@ -1,5 +1,8 @@
 var storyState = {
     create: function() {
+        music_1 = game.add.audio('m_story');
+        music_1.loop = true;
+        music_1.play();
         var storyimg13 = game.add.sprite(0, 0, 13);
         storyimg13.scale.setTo(scaleWidth, scaleHeight);
         storyimg13.inputEnabled = true;
@@ -64,7 +67,13 @@ var storyState = {
             obj.destroy();
         }, 1000);
         if (obj.key == '13') {
-            game.state.start('load_node');
+            music_1.destroy();
+            if (taro_num == finalnum && redbean_num == finalnum && greenbean_num == finalnum) {
+              game.state.start('loadendstory');
+}
+            else{
+              game.state.start('load_node');
+            }
         }
     }
 };

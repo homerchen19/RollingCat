@@ -4,6 +4,7 @@ var loadstoryState = {
             font: '30px Courier',
             fill: '#ffffff'
         });
+        game.load.audio('m_story','assets/story.mp3');
         game.load.image('1', 'assets/1.jpg');
         game.load.image('2', 'assets/2.jpg');
         game.load.image('3', 'assets/3.jpg');
@@ -24,7 +25,7 @@ var loadstoryState = {
         });
     },
     statusChangeCallback: function(res) {
-        if (res.status === 'connected') {
+       if (res.status === 'connected'){
             FB.api('/me', function(res) {
                 username = res.name;
                 //console.log(res);
@@ -36,6 +37,6 @@ var loadstoryState = {
                     game.state.start('story');
                 });
             });
-        }
+       }
     }
 };

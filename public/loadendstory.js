@@ -10,8 +10,10 @@ var loadendstoryState = {
         game.load.image('e4', 'assets/endstory_4.jpg');
         game.load.image('e5', 'assets/endstory_5.jpg');
         game.load.image('e6', 'assets/endstory_6.jpg');
+        game.load.audio('m_story','assets/story.mp3');
     },
     create: function() {
         game.state.start('over');
     }
+
 };
