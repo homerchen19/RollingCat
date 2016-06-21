@@ -1,5 +1,6 @@
 var menuState = {
     create: function() {
+        option_d = false;
         map = game.add.sprite(0, 0, 'map');
         map.scale.setTo(scaleWidth, scaleHeight);
         var Height = game.cache.getImage("ice").height;

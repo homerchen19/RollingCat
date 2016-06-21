@@ -64,7 +64,7 @@ var storyState = {
             obj.destroy();
         }, 1000);
         if (obj.key == '13') {
-            game.state.start('menu');
+            game.state.start('load_node');
         }
     }
 };

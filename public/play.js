@@ -2,7 +2,7 @@ var playState = {
     die: function(cat, obj) {
         die_num = die_num + 1;
         if (taro_num == finalnum && redbean_num == finalnum && greenbean_num == finalnum) {
-        //    game.state.start('loadendstory');
+            game.state.start('loadendstory');
         } else {
             obj.kill();
             game.paused = true;

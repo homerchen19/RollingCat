@@ -17,7 +17,6 @@ var loadState = {
         game.load.image('result_taro', 'assets/result_taro.png');
         game.load.image('restart', 'assets/restart.png');
         game.load.image('continue', 'assets/continue.png');
-        game.load.image('Login', 'assets/login.png');
         game.load.image('option', 'assets/option.png');
         game.load.image('ice', 'assets/ice.png');
         game.load.image('sidemenu_1', 'assets/sidemenu_1.png');
@@ -25,9 +24,7 @@ var loadState = {
         game.load.image('sidemenu_3', 'assets/sidemenu_3.png');
         game.load.image('sidemenu_4', 'assets/sidemenu_4.png');
         game.load.image('sidemenu_5', 'assets/sidemenu_5.png');
-        game.load.image('login_back', 'assets/login_back.png');
         game.load.image('back_contract', 'assets/back_contract.jpg');
-        game.load.image('title', 'assets/title.png');
         game.load.image('map', 'assets/map.jpg');
         game.load.image('alterbox', 'assets/alterbox.png');
         game.load.image('redbean_info', 'assets/redbean_info.png');
@@ -39,7 +36,7 @@ var loadState = {
         game.load.image('btm', 'assets/btm.png');
     },
     create: function() {
-        //game.state.start('login');
+      //if(!window.location.href.match(/story/))
         game.state.start('menu');
     }
 };

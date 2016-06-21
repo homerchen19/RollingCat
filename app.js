@@ -11,6 +11,11 @@ app.use(express.static('public/'));
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index_node.html'));
 });
+app.get('/story', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index_story.html'));
+    console.log('story!');
+});
+
 app.post('/userdata', function(req, res) {
     //console.log(req.body);
     var users = JSON.parse(fs.readFileSync('./register.json', 'utf8'));
@@ -61,6 +66,6 @@ app.post('/materia_num', function(req, res) {
         }
     }
 });
-app.listen(8800, function() {
+app.listen(8801, function() {
     console.log('Server is run!');
 });

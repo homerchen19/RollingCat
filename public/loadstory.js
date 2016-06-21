@@ -19,6 +19,23 @@ var loadstoryState = {
         game.load.image('13', 'assets/13.jpg');
     },
     create: function() {
-        game.state.start('story');
+        FB.getLoginStatus(function(res) {
+            loadstoryState.statusChangeCallback(res);
+        });
+    },
+    statusChangeCallback: function(res) {
+        if (res.status === 'connected') {
+            FB.api('/me', function(res) {
+                username = res.name;
+                //console.log(res);
+                $.post('/userdata', res, function(data) {
+                    redbean_num = parseInt(data.redbean);
+                    greenbean_num = parseInt(data.greenbean);
+                    taro_num = parseInt(data.taro);
+                    die_num = parseInt(data.die);
+                    game.state.start('story');
+                });
+            });
+        }
     }
 };
