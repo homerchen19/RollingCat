@@ -1,12 +1,12 @@
 var playState = {
     die: function(cat, obj) {
         music_3.pause();
-        music_4.play();
         die_num = die_num + 1;
         if (taro_num == finalnum && redbean_num == finalnum && greenbean_num == finalnum) {
             game.state.start('loadendstory');
             music_3.destroy();
         } else {
+            laugh.play();
             obj.kill();
             game.paused = true;
             b1.alpha = 0.25;
@@ -84,7 +84,6 @@ var playState = {
                     playState.backtogame();
                 } else if (event.x > x3 && event.x < x3 + w && event.y > y && event.y < y + h) {
                     game.paused = false;
-                    music_4.destroy();
                     music_3.destroy();
                     game.state.start('menu');
                 }
@@ -135,7 +134,6 @@ var playState = {
         chair_2s.alpha = 1;
         cat.alpha = 1;
         music_3.resume();
-        music_4.destroy();
         game.paused = false;
 
         //game.state.start('play');
@@ -254,7 +252,9 @@ var playState = {
         music_3 = game.add.audio('m_bgm');
         music_3.play();
         music_3.loop = true;
-        music_4 = game.add.audio('m_die');
+        
+        laugh = document.createElement("AUDIO");
+        laugh.src = './assets/dead.mp3'
         game.input.mouse.capture = true;
         // obstacle groups
         desks = game.add.group();
