@@ -66,6 +66,6 @@ app.post('/materia_num', function(req, res) {
         }
     }
 });
-app.listen(8801, function() {
+app.listen(process.env.PORT || 8801, function() {
     console.log('Server is run!');
 });
